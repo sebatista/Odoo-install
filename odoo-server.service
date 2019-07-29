@@ -1,0 +1,14 @@
+[Unit]
+Description=Odoo Open Source ERP and CRM
+
+[Service]
+Type=simple
+PermissionsStartOnly=true
+SyslogIdentifier=odoo-server
+User=odoo
+Group=odoo
+ExecStart=/opt/odoo/odoo-server/odoo-bin --config=/etc/odoo-server.conf
+WorkingDirectory=/opt/odoo/odoo-server/
+
+[Install]
+WantedBy=multi-user.target
