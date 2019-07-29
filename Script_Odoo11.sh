@@ -6,7 +6,10 @@
 sudo apt-get update && sudo apt-get upgrade -y
 
 # Instalar dependencias de python para Odoo 11
-sudo apt-get install python3-pip curl software-properties-common mc -y
+sudo apt-get install python3-pip -y
+sudo apt-get install curl -y
+sudo apt-get install software-properties-common -y
+sudo apt-get install mc -y
 
 # Instalar dependencias usando pip3
 sudo pip3 install Babel
@@ -87,7 +90,11 @@ python setup.py install
 exit
 
 # Instalacion de odoo 11
-sudo apt-get install git libsasl2-dev python-dev libldap2-dev libssl-dev -y
+sudo apt-get install git -y
+sudo apt-get install libsasl2-dev -y
+sudo apt-get install python-dev -y
+sudo apt-get install libldap2-dev -y
+sudo apt-get install libssl-dev -y
 sudo su - odoo -s /bin/bash
 git clone --depth 1 --branch 11.0 --single-branch https://www.github.com/odoo/odoo odoo-server/
 #sudo pip3 install -r odoo-server/requeriment.txt
