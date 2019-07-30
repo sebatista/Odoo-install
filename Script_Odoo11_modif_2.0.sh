@@ -15,72 +15,72 @@ sudo apt-get install mc -y
 sudo pip3 install --upgrade pip
 
 # Instalar dependencias usando pip3
-sudo pip3 install Babel
-sudo pip3 install decorator
-sudo pip3 install docutils
-sudo pip3 install ebaysdk
-sudo pip3 install feedparser
-sudo pip3 install gevent
-sudo pip3 install greenlet
-sudo pip3 install html2text
-sudo pip3 install Jinja2
-sudo pip3 install lxml
-sudo pip3 install Mako
-sudo pip3 install MarkupSafe
-sudo pip3 install mock
-sudo pip3 install num2words
-sudo pip3 install ofxparse
-sudo pip3 install passlib
-sudo pip3 install Pillow
-sudo pip3 install psutil
-sudo pip3 install psycogreen
-sudo pip3 install psycopg2
-sudo pip3 install pydot
-sudo pip3 install pyparsing
-sudo pip3 install PyPDF2
-sudo pip3 install pyserial
-sudo pip3 install python-dateutil
-sudo pip3 install python-openid
-sudo pip3 install pytz
-sudo pip3 install pyusb
-sudo pip3 install PyYAML
-sudo pip3 install qrcode
-sudo pip3 install reportlab
-sudo pip3 install requests
-sudo pip3 install six
-sudo pip3 install suds-jurko
-sudo pip3 install vatnumber 
-sudo pip3 install vobject
-sudo pip3 install Werkzeug
-sudo pip3 install XlsxWriter
-sudo pip3 install xlwt
-sudo pip3 install xlrd 
+sudo -H pip3 install Babel
+sudo -H pip3 install decorator
+sudo -H pip3 install docutils
+sudo -H pip3 install ebaysdk
+sudo -H pip3 install feedparser
+sudo -H pip3 install gevent
+sudo -H pip3 install greenlet
+sudo -H pip3 install html2text
+sudo -H pip3 install Jinja2
+sudo -H pip3 install lxml
+sudo -H pip3 install Mako
+sudo -H pip3 install MarkupSafe
+sudo -H pip3 install mock
+sudo -H pip3 install num2words
+sudo -H pip3 install ofxparse
+sudo -H pip3 install passlib
+sudo -H pip3 install Pillow
+sudo -H pip3 install psutil
+sudo -H pip3 install psycogreen
+sudo -H pip3 install psycopg2
+sudo -H pip3 install pydot
+sudo -H pip3 install pyparsing
+sudo -H pip3 install PyPDF2
+sudo -H pip3 install pyserial
+sudo -H pip3 install python-dateutil
+sudo -H pip3 install python-openid
+sudo -H pip3 install pytz
+sudo -H pip3 install pyusb
+sudo -H pip3 install PyYAML
+sudo -H pip3 install qrcode
+sudo -H pip3 install reportlab
+sudo -H pip3 install requests
+sudo -H pip3 install six
+sudo -H pip3 install suds-jurko
+sudo -H pip3 install vatnumber 
+sudo -H pip3 install vobject
+sudo -H pip3 install Werkzeug
+sudo -H pip3 install XlsxWriter
+sudo -H pip3 install xlwt
+sudo -H pip3 install xlrd 
 
 # Luego de instalar Odoo me pidio esta dependencia
-sudo pip3 install phonenumbers
+sudo -H pip3 install phonenumbers
 
 # Instacion de dependecias para Web Odoo
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install nodejs -y
-sudo apt-get install build-essential -y
-sudo apt-get install gcc
-sudo apt-get install g++
-sudo apt-get install make
-sudo npm install -g less
-sudo npm install -g less-plugin-clean-css
-sudo apt-get install node-less -y
+sudo -H apt-get install nodejs -y
+sudo -H apt-get install build-essential -y
+sudo -H apt-get install gcc
+sudo -H apt-get install g++
+sudo -H apt-get install make
+sudo -H npm install -g less
+sudo -H npm install -g less-plugin-clean-css
+sudo -H apt-get install node-less -y
 
 # Instalacion de Postgresql 9.6
 # En Debian 9.5 esta en los repositorios pero si no esta usar:
 #
 # sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 # wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sudo apt-get update
-sudo apt-get install postgresql-9.5 -y
-sudo apt-get install postgresql-client-9.5 -y
-sudo apt-get install libpq5 -y
-sudo apt-get install postgresql-contrib-9.5 -y
-sudo apt-get install sysstat -y
+sudo -H apt-get update
+sudo -H apt-get install postgresql-9.5 -y
+sudo -H apt-get install postgresql-client-9.5 -y
+sudo -H apt-get install postgresql-contrib-9.5 -y
+sudo -H apt-get install libpq5 -y
+sudo -H apt-get install sysstat -y
 
 # Creamos el usuario para la base de datos de Odoo
 sudo su postgres -c "createuser -s odoo"
@@ -89,12 +89,6 @@ sudo su postgres -c "createuser -s odoo"
 sudo adduser --system --home=/opt/odoo --group odoo
 sudo usermod -aG sudo odoo
 sudo passwd odoo
-
-
-
-
-
-
 
 
 #CORTAR EL SCRIPT PONERLO EN OTRO LADO
@@ -107,11 +101,6 @@ sudo -s
 cd gdata-2.0.18/
 python setup.py install
 exit
-#HASTA AQUÍ
-
-
-
-
 
 
 # Instalacion de odoo 11
@@ -121,25 +110,12 @@ sudo apt-get install python-dev -y
 sudo apt-get install libldap2-dev -y
 sudo apt-get install libssl-dev -y
 
-
-
-
-
-
-
-
-
-
-
 #CORTAR EL SCRIPT PONERLO EN OTRO LADO
 sudo su - odoo -s /bin/bash
 git clone --depth 1 --branch 11.0 --single-branch https://www.github.com/odoo/odoo odoo-server/
 sudo pip3 install -r odoo-server/requirements.txt
 sudo pip3 install -r odoo-server/doc/requirements.txt
 exit
-
-
-
 
 
 # Creamos carpeta para Log
@@ -161,94 +137,6 @@ EOF
 sudo cp ~/odoo-server.conf /etc/odoo-server.conf
 sudo chown odoo: /etc/odoo-server.conf
 sudo chmod 640 /etc/odoo-server.conf
-
-
-
-
-
-
-
-
-
-
-
-
-
-# SERVICIO ODOO ver 1.0
-cat <<EOF > ~/odoo-server
-### BEGIN INIT INFO
-# Provides:             odoo-bin
-# Required-Start:       \$remote_fs \$syslog
-# Required-Stop:        \$remote_fs \$syslog
-# Should-Start:         \$network
-# Should-Stop:          \$network
-# Default-Start:        2 3 4 5
-# Default-Stop:         0 1 6
-# Short-Description:    Enterprise Business Applications
-# Description:          ODOO Business Applications
-### END INIT INFO
-#!/bin/sh
-PATH=/bin:/sbin:/usr/bin
-DAEMON=/opt/odoo/odoo-server/odoo-bin
-NAME=odoo-bin
-DESC=odoo-server
-# Specify the user name (Default: odoo).
-USER=odoo
-# Specify an alternate config file (Default: /etc/odoo-server.conf).
-CONFIGFILE="/etc/odoo-server.conf"
-# pidfile
-PIDFILE=/var/run/\${NAME}.pid
-# Additional options that are passed to the Daemon.
-DAEMON_OPTS="-c \$CONFIGFILE"
-[ -x \$DAEMON ] || exit 0
-[ -f \$CONFIGFILE ] || exit 0
-checkpid() {
-    [ -f \$PIDFILE ] || return 1
-    pid=\`cat \$PIDFILE\`
-    [ -d /proc/\$pid ] && return 0
-    return 1
-}
-case "\${1}" in
-    start)
-        echo -n "Starting \${DESC}: "
-        start-stop-daemon --start --quiet --pidfile \$PIDFILE --chuid \$USER --background --make-pidfile --exec \$DAEMON -- \$DAEMON_OPTS
-        echo "\${NAME}."
-    ;;
-    stop)
-        echo -n "Stopping \${DESC}: "
-        start-stop-daemon --stop --quiet --pidfile \$PIDFILE --oknodo
-        echo "\${NAME}."
-    ;;
-    restart|force-reload)
-        echo -n "Restarting \${DESC}: "
-        start-stop-daemon --stop --quiet --pidfile \$PIDFILE --oknodo
-        sleep 1
-        start-stop-daemon --start --quiet --pidfile \$PIDFILE --chuid \$USER --background --make-pidfile --exec \$DAEMON -- \$DAEMON_OPTS
-        echo "\${NAME}."
-    ;;
-    *)
-        N=/etc/init.d/\$NAME
-        echo "Usage: \$NAME {start|stop|restart|force-reload}" >&2
-        exit 1
-    ;;
-esac
-exit 0
-EOF
-
-sudo cp ~/odoo-server /etc/init.d/odoo-server
-sudo chmod 755 /etc/init.d/odoo-server
-sudo chown root: /etc/init.d/odoo-server
-
-# NO FUNCIONA
-#sudo update-rc.d odoo-server defaults
-# Arranque de Odoo 11
-#sudo su root -c "/etc/init.d/odoo-server start"
-
-
-
-
-
-
 
 
 # SERVICIO ODOO ver 2.0
@@ -284,8 +172,9 @@ sudo systemctl enable odoo-server.service
 
 
 
-
+#
 # Localizacion argentina ADHOC
+#
 
 # Crear directorios para modulos externos
 sudo mkdir /opt/odoo/addons
@@ -331,6 +220,89 @@ sudo -H pip3 install -r argentina-sale-11.0/requirements.txt
 sudo -H pip3 install -r miscellaneous-11.0/requirements.txt
 sudo -H pip3 install -r odoo-argentina-11.0/requirements.txt
 
+
+#
+# Localizacion argentina OCA
+#
+
+# Crear directorios para modulos externos
+sudo mkdir /opt/odoo/addons/oca
+cd /opt/odoo/addons/oca
+
+git clone https://github.com/OCA/server-tools -b 11.0 oca-server-tools
+git clone https://github.com/OCA/sale-workflow -b 11.0 oca-sale-workflow
+git clone https://github.com/OCA/sale-financial -b 11.0 oca-sale-financial
+git clone https://github.com/OCA/purchase-workflow -b 11.0 oca-purchase-workflow
+git clone https://github.com/OCA/account-financial-tools -b 11.0 oca-account-financial-tools
+git clone https://github.com/OCA/account-financial-reporting -b 11.0 oca-account-financial-reporting
+git clone https://github.com/OCA/account-invoicing -b 11.0 oca-account-invoicing
+git clone https://github.com/OCA/account-payment -b 11.0 oca-account-payment
+git clone https://github.com/OCA/account-analytic -b 11.0 oca-account-analytic
+git clone https://github.com/OCA/reporting-engine -b 11.0 oca-reporting-engine
+git clone https://github.com/OCA/stock-logistics-workflow -b 11.0 oca-stock-logistics-workflow
+git clone https://github.com/OCA/stock-logistics-warehouse -b 11.0 oca-stock-logistics-warehouse
+git clone https://github.com/OCA/knowledge -b 11.0 oca-knowledge
+git clone https://github.com/OCA/manufacture -b 11.0 oca-manufacture
+git clone https://github.com/OCA/margin-analysis -b 11.0 oca-margin-analysis
+git clone https://github.com/OCA/crm -b 11.0 oca-crm
+git clone https://github.com/OCA/hr -b 11.0 oca-hr
+git clone https://github.com/OCA/hr-timesheet -b 11.0 oca-hr-timesheet
+git clone https://github.com/OCA/commission -b 11.0 oca-commission
+git clone https://github.com/OCA/report-print-send -b 11.0 oca-report-print-send
+git clone https://github.com/OCA/social -b 11.0 oca-social
+git clone https://github.com/OCA/contract -b 11.0 oca-contract
+git clone https://github.com/OCA/web -b 11.0 oca-web
+git clone https://github.com/OCA/website -b 11.0 oca-website
+git clone https://github.com/OCA/product-variant -b 11.0 oca-product-variant
+git clone https://github.com/OCA/product-attribute -b 11.0 oca-product-attribute
+git clone https://github.com/OCA/partner-contact -b 11.0 oca-partner-contact
+git clone https://github.com/OCA/e-commerce -b 11.0 oca-e-commerce
+
+sudo chown -R odoo:odoo -R /opt/odoo/addons
+sudo chmod -R 775 /opt/odoo/addons
+
+sudo -H pip3 install -r oca-server-tools/requirements.txt
+pip install -r oca-sale-workflow/requirements.txt
+pip install -r oca-sale-financial/requirements.txt
+pip install -r oca-purchase-workflow/requirements.txt
+pip install -r oca-account-financial-tools/requirements.txt
+pip install -r oca-account-financial-reporting/requirements.txt
+pip install -r oca-account-invoicing/requirements.txt
+pip install -r oca-account-payment/requirements.txt
+pip install -r oca-account-analytic/requirements.txt
+pip install -r oca-reporting-engine/requirements.txt
+pip install -r oca-stock-logistics-workflow/requirements.txt
+pip install -r oca-stock-logistics-warehouse/requirements.txt
+pip install -r oca-knowledge/requirements.txt
+pip install -r oca-manufacture/requirements.txt
+pip install -r oca-margin-analysis/requirements.txt
+pip install -r oca-crm/requirements.txt
+pip install -r oca-hr/requirements.txt
+pip install -r oca-hr-timesheet/requirements.txt
+pip install -r oca-commission/requirements.txt
+pip install -r oca-report-print-send/requirements.txt
+pip install -r oca-social/requirements.txt
+pip install -r oca-contract/requirements.txt
+pip install -r oca-web/requirements.txt
+pip install -r oca-website/requirements.txt
+pip install -r oca-product-variant/requirements.txt
+pip install -r oca-product-attribute/requirements.txt
+pip install -r oca-partner-contact/requirements.txt
+pip install -r oca-e-commerce/requirements.txt
+
+
+cd ..
+mkdir others
+cd others
+
+git clone https://github.com/akretion/odoo-usability -b 11.0 others-akretion-odoo-usability
+git clone https://github.com/it-projects-llc/website-addons -b 11.0 others-it-projects-llc-website-addons
+
+pip install -r others-akretion-odoo-usability/requirements.txt
+pip install -r others-it-projects-llc-website-addons/requirements.txt
+
+sudo chown -R odoo:odoo -R /opt/odoo/addons
+sudo chmod -R 775 /opt/odoo/addons
 
 #
 # Libreoffice - servicio en puerto 8100 del localhost
