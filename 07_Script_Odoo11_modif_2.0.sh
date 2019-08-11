@@ -39,33 +39,33 @@ sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
 sudo -H pip3 install -r oca-server-tools/requirements.txt
-pip install -r oca-sale-workflow/requirements.txt
-pip install -r oca-sale-financial/requirements.txt
-pip install -r oca-purchase-workflow/requirements.txt
-pip install -r oca-account-financial-tools/requirements.txt
-pip install -r oca-account-financial-reporting/requirements.txt
-pip install -r oca-account-invoicing/requirements.txt
-pip install -r oca-account-payment/requirements.txt
-pip install -r oca-account-analytic/requirements.txt
-pip install -r oca-reporting-engine/requirements.txt
-pip install -r oca-stock-logistics-workflow/requirements.txt
-pip install -r oca-stock-logistics-warehouse/requirements.txt
-pip install -r oca-knowledge/requirements.txt
-pip install -r oca-manufacture/requirements.txt
-pip install -r oca-margin-analysis/requirements.txt
-pip install -r oca-crm/requirements.txt
-pip install -r oca-hr/requirements.txt
-pip install -r oca-hr-timesheet/requirements.txt
-pip install -r oca-commission/requirements.txt
-pip install -r oca-report-print-send/requirements.txt
-pip install -r oca-social/requirements.txt
-pip install -r oca-contract/requirements.txt
-pip install -r oca-web/requirements.txt
-pip install -r oca-website/requirements.txt
-pip install -r oca-product-variant/requirements.txt
-pip install -r oca-product-attribute/requirements.txt
-pip install -r oca-partner-contact/requirements.txt
-pip install -r oca-e-commerce/requirements.txt
+sudo -H pip install -r oca-sale-workflow/requirements.txt
+sudo -H pip install -r oca-sale-financial/requirements.txt
+sudo -H pip install -r oca-purchase-workflow/requirements.txt
+sudo -H pip install -r oca-account-financial-tools/requirements.txt
+sudo -H pip install -r oca-account-financial-reporting/requirements.txt
+sudo -H pip install -r oca-account-invoicing/requirements.txt
+sudo -H pip install -r oca-account-payment/requirements.txt
+sudo -H pip install -r oca-account-analytic/requirements.txt
+sudo -H pip install -r oca-reporting-engine/requirements.txt
+sudo -H pip install -r oca-stock-logistics-workflow/requirements.txt
+sudo -H pip install -r oca-stock-logistics-warehouse/requirements.txt
+sudo -H pip install -r oca-knowledge/requirements.txt
+sudo -H pip install -r oca-manufacture/requirements.txt
+sudo -H pip install -r oca-margin-analysis/requirements.txt
+sudo -H pip install -r oca-crm/requirements.txt
+sudo -H pip install -r oca-hr/requirements.txt
+sudo -H pip install -r oca-hr-timesheet/requirements.txt
+sudo -H pip install -r oca-commission/requirements.txt
+sudo -H pip install -r oca-report-print-send/requirements.txt
+sudo -H pip install -r oca-social/requirements.txt
+sudo -H pip install -r oca-contract/requirements.txt
+sudo -H pip install -r oca-web/requirements.txt
+sudo -H pip install -r oca-website/requirements.txt
+sudo -H pip install -r oca-product-variant/requirements.txt
+sudo -H pip install -r oca-product-attribute/requirements.txt
+sudo -H pip install -r oca-partner-contact/requirements.txt
+sudo -H pip install -r oca-e-commerce/requirements.txt
 
 
 cd ..
