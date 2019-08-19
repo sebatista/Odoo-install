@@ -68,9 +68,9 @@ sudo -H pip3 install -r oca-partner-contact/requirements.txt
 #sudo -H pip3 install -r oca-e-commerce/requirements.txt
 
 
-cd ..
-mkdir others
-cd others
+
+sudo -H mkdir /opt/odoo/addons/others
+cd /opt/odoo/addons/others
 
 sudo -H git clone https://github.com/akretion/odoo-usability -b 11.0 others-akretion-odoo-usability
 sudo -H git clone https://github.com/it-projects-llc/website-addons -b 11.0 others-it-projects-llc-website-addons

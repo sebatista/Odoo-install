@@ -28,6 +28,17 @@ sudo unzip ingadhoc-argentina-sale.zip
 sudo unzip ingadhoc-stock.zip
 sudo unzip partner_identification.zip
 
+sudo rm ingadhoc-odoo-argentina.zip
+sudo rm ingadhoc-account-financial-tools.zip
+sudo rm ingadhoc-account-payment.zip
+sudo rm ingadhoc-aeroo_reports.zip
+sudo rm ingadhoc-miscellaneous.zip
+sudo rm ingadhoc-argentina-reporting.zip
+sudo rm ingadhoc-reporting-engine.zip
+sudo rm ingadhoc-argentina-sale.zip
+sudo rm ingadhoc-stock.zip
+sudo rm partner_identification.zip
+
 sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
