@@ -6,3 +6,5 @@ sudo chmod 775 ./05_Script_Odoo11_modif_2.0.sh
 sudo chmod 775 ./06_Script_Odoo11_modif_2.0.sh
 sudo chmod 775 ./07_Script_Odoo11_modif_2.0.sh
 sudo chmod 775 ./08_Script_Odoo11_modif_2.0.sh
+sudo chmod 775 ./09_Script_Odoo11_modif_2.0.sh
+sudo chmod 775 ./10_Script_Odoo11_modif_2.0.sh
