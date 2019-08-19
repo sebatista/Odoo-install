@@ -3,8 +3,8 @@
 #
 
 # Crear directorios para modulos externos
-sudo mkdir /opt/odoo/addons
-cd /opt/odoo/addons
+sudo mkdir /opt/odoo/addons/ADHOC
+cd /opt/odoo/addons/ADHOC
 
 sudo wget https://github.com/ingadhoc/odoo-argentina/archive/11.0.zip -O ingadhoc-odoo-argentina.zip
 sudo wget https://github.com/ingadhoc/account-financial-tools/archive/11.0.zip -O ingadhoc-account-financial-tools.zip
