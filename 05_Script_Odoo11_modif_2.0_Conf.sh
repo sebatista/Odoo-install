@@ -1,7 +1,13 @@
 
 # Creamos carpeta para Log
-sudo mkdir /var/log/odoo
-sudo chown -R odoo:root /var/log/odoo
+if [ -d /var/log/odoo/ ];
+then
+	echo "El directorio /var/log/odoo/ ya existe."
+else
+	sudo mkdir /var/log/odoo
+	sudo chown -R odoo:root /var/log/odoo
+	echo "Directorio /var/log/odoo/ creado."
+fi
 
 # Creamos el archivo de configuracion de odoo
 cat <<EOF > ~/odoo-server.conf

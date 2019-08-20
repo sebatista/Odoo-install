@@ -3,7 +3,14 @@
 #
 
 # Crear directorios para modulos externos
-sudo -H mkdir /opt/odoo/addons/oca
+if [ -d /opt/odoo/addons/oca/ ];
+then
+	echo "El directorio /opt/odoo/addons/oca/ ya existe."
+else
+	sudo -H mkdir /opt/odoo/addons/oca
+	echo "Directorio /opt/odoo/addons/oca/ creado."
+fi
+
 cd /opt/odoo/addons/oca
 
 sudo -H git clone https://github.com/OCA/server-tools -b 11.0 oca-server-tools
@@ -68,8 +75,14 @@ sudo -H pip3 install -r oca-partner-contact/requirements.txt
 #sudo -H pip3 install -r oca-e-commerce/requirements.txt
 
 
+if [ -d /opt/odoo/addons/others/ ];
+then
+	echo "El directorio /opt/odoo/addons/others/ ya existe."
+else
+	sudo -H mkdir /opt/odoo/addons/others
+	echo "Directorio /opt/odoo/addons/others/ creado."
+fi
 
-sudo -H mkdir /opt/odoo/addons/others
 cd /opt/odoo/addons/others
 
 sudo -H git clone https://github.com/akretion/odoo-usability -b 11.0 others-akretion-odoo-usability
