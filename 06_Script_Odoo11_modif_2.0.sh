@@ -2,9 +2,25 @@
 # Localizacion argentina ADHOC
 #
 
-# Crear directorios para modulos externos
-sudo mkdir /opt/odoo/addons/ADHOC
-cd /opt/odoo/addons/ADHOC
+# Crear directorios para Addons
+if [ -d /opt/odoo/addons/ ] ;
+then
+	echo "Directorio /opt/odoo/addons/ existente"
+else
+	sudo mkdir /opt/odoo/addons
+	echo "Directorio /opt/odoo/addons/ creado"
+fi
+
+#Crear directorios para ADHOC
+if [ -d /opt/odoo/addons/ADHOC/ ] ;
+then
+	echo "Directorio /opt/odoo/addons/ADHOC/ existente"
+else
+	sudo mkdir /opt/odoo/addons/ADHOC
+	echo "Directorio /opt/odoo/addons/ADHOC/ creado"
+fi
+
+sudo cd /opt/odoo/addons/ADHOC
 
 sudo wget https://github.com/ingadhoc/odoo-argentina/archive/11.0.zip -O ingadhoc-odoo-argentina.zip
 sudo wget https://github.com/ingadhoc/account-financial-tools/archive/11.0.zip -O ingadhoc-account-financial-tools.zip

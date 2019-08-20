@@ -12,7 +12,7 @@ sudo apt-get install curl -y
 sudo apt-get install software-properties-common -y
 sudo apt-get install mc -y
 
-sudo pip3 install --upgrade pip
+sudo -H pip3 install --upgrade pip
 
 # Instalar dependencias usando pip3
 sudo -H pip3 install Babel
