@@ -13,9 +13,27 @@ sudo -H pip3 install daemonize
 #
 # Instalar aeroo_docs desde github oficial
 #
-sudo mkdir /opt/aeroo
+
+#Creación de carpeta de Instalación
+if [ -d /opt/aero/ ];
+then
+	echo "Directorio /opt/aero/ existente"
+else
+	sudo mkdir /opt/aeroo
+	echo "Directorio /opt/aero/ creado"
+fi
+
 cd /opt/aeroo
-sudo mkdir /var/log/aeroo-docs
+
+# Creación de carpeta de Logs
+if [ -d /var/log/aeroo-docs/ ];
+then
+	echo "Directorio /var/log/aeroo-docs/ existente"
+else
+	sudo mkdir /var/log/aeroo-docs
+	echo "Directorio /var/log/aeroo-docs/ creado"
+fi
+
 
 cat <<EOF > ~/aeroo-docs.conf
 [start]

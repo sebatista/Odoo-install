@@ -23,15 +23,18 @@ sudo -H apt-get install libfontconfig1-dev -y
 sudo -H apt-get install libfreetype6-dev -y
 sudo -H apt-get install fontconfig -y
 
+# Descargamos herramientas opcionales necesarias
 sudo wget http://archive.ubuntu.com/ubuntu/pool/main/libj/libjpeg-turbo/libjpeg-turbo8_1.5.2-0ubuntu5.18.04.1_amd64.deb
-sudo wget http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb7u4_amd64.deb
 sudo wget http://ftp.br.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb
 sudo wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
 
 sudo -H dpkg -i libjpeg-turbo8_1.5.2-0ubuntu5.18.04.1_amd64.deb
-sudo -H dpkg -i libssl1.0.0_1.0.1t-1+deb7u4_amd64.deb
 sudo -H dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb
 sudo -H dpkg -i wkhtmltox-0.12.1_linux-trusty-amd64.deb
+
+#Falla
+#sudo wget http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb7u4_amd64.deb
+#sudo -H dpkg -i libssl1.0.0_1.0.1t-1+deb7u4_amd64.deb
 
 sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin
 sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bin
@@ -44,5 +47,5 @@ sudo chown www-data -R /usr/local/lib/python3.5/dist-packages/pyafipws
 sudo chmod a+xr -R /usr/local/lib/python3.5/dist-packages/pyafipws
 sudo chmod a+xwrt -R /usr/local/lib/python3.5/dist-packages/pyafipws/__pycache__/
 
-# Odoo instalado... reiniciando
+# Odoo instalado... reiniciando - PROBAR
 # sudo su root -c "/etc/init.d/odoo-server restart"

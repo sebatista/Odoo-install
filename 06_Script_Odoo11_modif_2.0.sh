@@ -20,7 +20,7 @@ else
 	echo "Directorio /opt/odoo/addons/ADHOC/ creado"
 fi
 
-sudo cd /opt/odoo/addons/ADHOC
+cd /opt/odoo/addons/ADHOC
 
 sudo wget https://github.com/ingadhoc/odoo-argentina/archive/11.0.zip -O ingadhoc-odoo-argentina.zip
 sudo wget https://github.com/ingadhoc/account-financial-tools/archive/11.0.zip -O ingadhoc-account-financial-tools.zip

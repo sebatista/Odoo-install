@@ -2,7 +2,16 @@
 # Localizacion argentina OCA
 #
 
-# Crear directorios para modulos externos
+# Crear directorios para Addons
+if [ -d /opt/odoo/addons/ ] ;
+then
+	echo "Directorio /opt/odoo/addons/ existente"
+else
+	sudo mkdir /opt/odoo/addons
+	echo "Directorio /opt/odoo/addons/ creado"
+fi
+
+# Crear directorios para OCA
 if [ -d /opt/odoo/addons/oca/ ];
 then
 	echo "El directorio /opt/odoo/addons/oca/ ya existe."
@@ -75,6 +84,22 @@ sudo -H pip3 install -r oca-partner-contact/requirements.txt
 #sudo -H pip3 install -r oca-e-commerce/requirements.txt
 
 
+
+
+#
+# Localizacion argentina OCA
+#
+
+# Crear directorios para Addons
+if [ -d /opt/odoo/addons/ ] ;
+then
+	echo "Directorio /opt/odoo/addons/ existente"
+else
+	sudo mkdir /opt/odoo/addons
+	echo "Directorio /opt/odoo/addons/ creado"
+fi
+
+# Crear directorios para OTROS
 if [ -d /opt/odoo/addons/others/ ];
 then
 	echo "El directorio /opt/odoo/addons/others/ ya existe."

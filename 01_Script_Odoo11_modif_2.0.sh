@@ -7,10 +7,13 @@ sudo apt-get update
 sudo apt-get upgrade -y
 
 # Instalar dependencias de python para Odoo 11
-sudo apt-get install python3-pip -y
-sudo apt-get install curl -y
-sudo apt-get install software-properties-common -y
-sudo apt-get install mc -y
+sudo -H apt-get install python3-pip -y
+sudo -H apt-get install curl -y
+sudo -H apt-get install software-properties-common -y
+sudo -H apt-get install mc -y
+sudo -H apt-get install postgresql
+sudo -H apt-get install python-psycopg2
+sudo -H apt-get install libpq-dev
 
 sudo -H pip3 install --upgrade pip
 
