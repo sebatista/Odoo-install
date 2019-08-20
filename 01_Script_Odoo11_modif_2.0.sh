@@ -11,9 +11,9 @@ sudo -H apt-get install python3-pip -y
 sudo -H apt-get install curl -y
 sudo -H apt-get install software-properties-common -y
 sudo -H apt-get install mc -y
-sudo -H apt-get install postgresql
-sudo -H apt-get install python-psycopg2
-sudo -H apt-get install libpq-dev
+sudo -H apt-get install postgresql -y
+sudo -H apt-get install python-psycopg2 -y
+sudo -H apt-get install libpq-dev -y
 
 sudo -H pip3 install --upgrade pip
 
@@ -66,9 +66,9 @@ sudo -H pip3 install phonenumbers
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo -H apt-get install nodejs -y
 sudo -H apt-get install build-essential -y
-sudo -H apt-get install gcc
-sudo -H apt-get install g++
-sudo -H apt-get install make
+sudo -H apt-get install gcc -y
+sudo -H apt-get install g++ -y
+sudo -H apt-get install make -y
 sudo -H npm install -g less
 sudo -H npm install -g less-plugin-clean-css
 sudo -H apt-get install node-less -y
