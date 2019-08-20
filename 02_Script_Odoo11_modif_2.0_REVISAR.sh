@@ -13,6 +13,10 @@ sudo tar zxvf gdata-2.0.18.tar.gz
 sudo rm gdata-2.0.18.tar.gz
 sudo chown -R odoo: gdata-2.0.18
 sudo -s
-cd gdata-2.0.18/
+#PROBAR
+#sudo -s /bin/bash -c "python /opt/odoo/gdata-2.0.18/setup.py install"
+cd /opt/odoo/gdata-2.0.18/
 python setup.py install
 exit
+
+# PROBAR pip install gdata que en la página de python dice que se puede así. Es para aplicaciones Google
