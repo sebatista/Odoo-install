@@ -20,3 +20,6 @@ python setup.py install
 exit
 
 # PROBAR pip install gdata que en la página de python dice que se puede así. Es para aplicaciones Google
+# https://pypi.org/project/gdata/
+#pip install gdata
+#sudo -H pip3 install gdata

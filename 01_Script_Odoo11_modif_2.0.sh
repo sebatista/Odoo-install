@@ -14,6 +14,11 @@ sudo -H apt-get install mc -y
 sudo -H apt-get install postgresql -y
 sudo -H apt-get install python-psycopg2 -y
 sudo -H apt-get install libpq-dev -y
+sudo -H apt-get install git -y
+sudo -H apt-get install libsasl2-dev -y
+sudo -H apt-get install python-dev -y
+sudo -H apt-get install libldap2-dev -y
+sudo -H apt-get install libssl-dev -y
 
 sudo -H pip3 install --upgrade pip
 

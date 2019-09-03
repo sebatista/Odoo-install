@@ -23,6 +23,7 @@ fi
 cd /opt/odoo/addons/oca
 
 sudo -H git clone https://github.com/OCA/server-tools -b 11.0 oca-server-tools
+sudo -H git clone https://github.com/OCA/server-ux -b 11.0 oca-server-ux
 sudo -H git clone https://github.com/OCA/sale-workflow -b 11.0 oca-sale-workflow
 sudo -H git clone https://github.com/OCA/sale-financial -b 11.0 oca-sale-financial
 sudo -H git clone https://github.com/OCA/purchase-workflow -b 11.0 oca-purchase-workflow
@@ -55,6 +56,7 @@ sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
 sudo -H pip3 install -r oca-server-tools/requirements.txt
+#sudo -H pip3 install -r oca-server-ux/requirements.txt
 #sudo -H pip3 install -r oca-sale-workflow/requirements.txt
 #sudo -H pip3 install -r oca-sale-financial/requirements.txt
 #sudo -H pip install -r oca-purchase-workflow/requirements.txt
