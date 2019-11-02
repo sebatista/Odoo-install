@@ -1,0 +1,14 @@
+BUSQUEDA
+========
+https://apps.odoo.com/apps/modules/browse?search=treasury&price=Free
+
+
+https://apps.odoo.com/apps/modules/7.0/isf_treasury_budget_report/
+https://apps.odoo.com/apps/modules/6.0/treasury/
+https://apps.odoo.com/apps/modules/8.0/account_bank_voucher/
+https://apps.odoo.com/apps/modules/8.0/account_treasury_forecast/
+https://apps.odoo.com/apps/modules/8.0/account_treasury_forecast_cashflow_banking/
+
+Foro
+====
+https://www.odoo.com/es_ES/forum/ayuda-1/question/manage-cash-operations-with-multiple-users-without-pos-module-144187

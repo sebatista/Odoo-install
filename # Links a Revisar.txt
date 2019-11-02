@@ -1,0 +1,21 @@
+
+//VERSIÓN 11
+https://github.com/ingadhoc/multi-store/tree/11.0
+https://github.com/ingadhoc/hr/tree/11.0
+https://github.com/ingadhoc/sale/tree/11.0
+https://github.com/ingadhoc/account-invoicing/tree/11.0
+
+https://github.com/OCA
+https://github.com/odoomrp/odoomrp-utils
+
+//VERSIÓN 8
+https://github.com/ingadhoc/odoo-logistic
+https://github.com/ingadhoc/odoo-clinic
+
+
+//DOCKER
+https://github.com/ingadhoc/docker-compose-odoo
+https://github.com/ingadhoc/docker-odoo-adhoc-argentina
+https://github.com/ingadhoc/docker-odoo-adhoc
+https://github.com/ingadhoc/docker-odoo
+https://microbadger.com/images/adhoc/odoo-ar:11.0
