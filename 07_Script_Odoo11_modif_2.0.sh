@@ -52,6 +52,8 @@ sudo -H git clone https://github.com/OCA/product-attribute -b 11.0 oca-product-a
 sudo -H git clone https://github.com/OCA/partner-contact -b 11.0 oca-partner-contact
 sudo -H git clone https://github.com/OCA/e-commerce -b 11.0 oca-e-commerce
 
+sudo -H git clone https://github.com/OCA/queue -b 11.0 oca-queue
+
 sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
@@ -75,7 +77,12 @@ sudo -H pip3 install -r oca-reporting-engine/requirements.txt
 #sudo -H pip3 install -r oca-hr/requirements.txt
 #sudo -H pip3 install -r oca-hr-timesheet/requirements.txt
 #sudo -H pip3 install -r oca-commission/requirements.txt
+
+#sudo -H pip3 install -r oca-queue/requirements.txt
+
+#Tiró error, REVISAR
 sudo -H pip3 install -r oca-report-print-send/requirements.txt
+
 sudo -H pip3 install -r oca-social/requirements.txt
 #sudo -H pip3 install -r oca-contract/requirements.txt
 sudo -H pip3 install -r oca-web/requirements.txt
