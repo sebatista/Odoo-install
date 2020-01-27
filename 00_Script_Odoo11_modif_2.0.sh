@@ -4,8 +4,8 @@ sudo chmod 775 ./03_Script_Odoo11_modif_2.0.sh
 sudo chmod 775 ./04_Script_Odoo11_modif_2.0_REVISAR.sh
 sudo chmod 775 ./05_Script_Odoo11_modif_2.0_Conf.sh
 sudo chmod 775 ./05_Script_Odoo11_modif_2.0_Servicio.sh
-sudo chmod 775 ./06_Script_Odoo11_modif_2.0.sh
-sudo chmod 775 ./07_Script_Odoo11_modif_2.0.sh
-sudo chmod 775 ./08_Script_Odoo11_modif_2.0.sh
-sudo chmod 775 ./09_Script_Odoo11_modif_2.0.sh
-sudo chmod 775 ./10_Script_Odoo11_modif_2.0.sh
+sudo chmod 775 ./06_Script_Odoo11_modif_2.0_addons_adhoc.sh
+sudo chmod 775 ./07_Script_Odoo11_modif_2.0_addons_oca_others.sh
+sudo chmod 775 ./08_Script_Odoo11_modif_2.0_libreOffice.sh
+sudo chmod 775 ./09_Script_Odoo11_modif_2.0_Aeroo.sh
+sudo chmod 775 ./10_Script_Odoo11_modif_2.0_wkhtmltox_pyafipws.sh

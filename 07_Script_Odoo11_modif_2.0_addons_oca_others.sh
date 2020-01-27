@@ -123,8 +123,26 @@ cd /opt/odoo/addons/others
 sudo -H git clone https://github.com/akretion/odoo-usability -b 11.0 others-akretion-odoo-usability
 sudo -H git clone https://github.com/it-projects-llc/website-addons -b 11.0 others-it-projects-llc-website-addons
 
+
+
+
+
+#Clonamos todo el repositorio de addons de Jobiols, pero solo utilizarémos 2 carpetas. ARBA y SICORE
+sudo -H git clone https://github.com/jobiols/odoo-addons -b 11.0 jobiols-addons
+
+
+sudo -H git clone https://github.com/regaby/odoo-addons -b 11.0 regaby-addons
+
+
+
 #sudo -H pip3 install -r others-akretion-odoo-usability/requirements.txt
 sudo -H pip3 install -r others-it-projects-llc-website-addons/requirements.txt
+
+#Probar
+sudo -H pip3 install -r jobiols-addons/l10n_ar_export_arba/requirements.txt
+sudo -H pip3 install -r jobiols-addons/l10n_ar_export_sicore/requirements.txt
+sudo -H pip3 install -r regaby-addons/requirements.txt
+#Termina prueba
 
 sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons

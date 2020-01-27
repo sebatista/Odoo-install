@@ -43,6 +43,8 @@ sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bin
 # Problema de permisos en carpeta cache de pyafipws
 # generalmente en /usr/local/lib/python3.5/dist-packages/pyafipws
 #
+# FALTA UN DIRECTORIO DE CACHE. Hay que crear el directorio
+#
 sudo chown www-data -R /usr/local/lib/python3.5/dist-packages/pyafipws
 sudo chmod a+xr -R /usr/local/lib/python3.5/dist-packages/pyafipws
 sudo chmod a+xwrt -R /usr/local/lib/python3.5/dist-packages/pyafipws/__pycache__/
