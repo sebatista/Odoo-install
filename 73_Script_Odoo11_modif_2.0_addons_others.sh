@@ -27,7 +27,8 @@ cd /opt/odoo/addons/others
 # 2020-01-01 - Regaby -> solo utilizaremos ???
 sudo -H git clone https://github.com/it-projects-llc/website-addons -b 11.0 others-it-projects-llc-website-addons
 sudo -H git clone https://github.com/akretion/odoo-usability -b 11.0 others-akretion-odoo-usability
-sudo -H git clone https://github.com/jobiols/odoo-addons -b 11.0 jobiols-odoo-addons
+#sudo -H git clone https://github.com/jobiols/odoo-addons -b 11.0 jobiols-odoo-addons
+sudo -H git clone https://github.com/sebatista/jobiols-odoo-addons -b 11.0 jobiols-odoo-addons
 sudo -H git clone https://github.com/regaby/odoo-addons -b 11.0 regaby-odoo-addons
 
 
