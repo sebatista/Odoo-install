@@ -7,8 +7,8 @@ sudo -H apt-get install python3-setuptools -y
 sudo -H apt-get install python3-uno -y
 sudo -H apt-get install python3-lxml -y
 
-sudo -H pip3 install jsonrpc2
-sudo -H pip3 install daemonize
+pip3 install jsonrpc2
+pip3 install daemonize
 
 #
 # Instalar aeroo_docs desde github oficial

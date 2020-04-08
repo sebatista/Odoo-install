@@ -90,8 +90,6 @@ sudo git clone --depth 1 --branch 11.0 --single-branch https://github.com/ingadh
 sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
-pip3 install pycryptodome
-
 pip3 install -r account-analytic/requirements.txt
 #pip3 install -r account-financial-tools/requirements.txt
 pip3 install -r account-invoicing/requirements.txt

@@ -66,6 +66,7 @@ pip3 install XlsxWriter
 pip3 install xlwt
 pip3 install xlrd 
 pip3 install phonenumbers
+pip3 install pycryptodome
 
 # Instacion de dependecias para Web Odoo
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
