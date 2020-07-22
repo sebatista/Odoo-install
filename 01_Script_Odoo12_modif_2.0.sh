@@ -85,9 +85,9 @@ sudo -H apt-get install node-less -y
 # sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 # wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo -H apt-get update
-sudo -H apt-get install postgresql-9.5 -y
-sudo -H apt-get install postgresql-client-9.5 -y
-sudo -H apt-get install postgresql-contrib-9.5 -y
+sudo -H apt-get install postgresql-10 -y
+sudo -H apt-get install postgresql-client-10 -y
+sudo -H apt-get install postgresql-contrib-10 -y
 sudo -H apt-get install libpq5 -y
 sudo -H apt-get install sysstat -y
 
