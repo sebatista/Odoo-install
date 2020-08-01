@@ -24,9 +24,6 @@ EOF
 
 #GENERA ERROR: /opt/odoo/addons/OCA/report-print-send,
 
-#Ésta ruta genera un error que no carga ninguno
-#/opt/odoo/addons/OCA/report-print-send,
-
 sudo cp ~/odoo-server.conf /etc/odoo-server.conf
 sudo chown odoo: /etc/odoo-server.conf
 sudo chmod 640 /etc/odoo-server.conf
