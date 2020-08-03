@@ -2,7 +2,13 @@
 # Creamos usuario, grupo y home para odoo
 sudo adduser --system --home=/opt/odoo --group odoo
 sudo usermod -aG sudo odoo
+# Luego de ésta línea es necesario indicar la password.
 sudo passwd odoo
+
+# PROBAR pip install gdata que en la página de python dice que se puede así. Es para aplicaciones Google
+# https://pypi.org/project/gdata/
+# Funcionó perfecto, pero se realizó luego de la opción anterior.
+pip3 install gdata
 
 
 #CORTAR EL SCRIPT PONERLO EN OTRO LADO
@@ -18,8 +24,3 @@ sudo -s
 cd /opt/odoo/gdata-2.0.18/
 python setup.py install
 exit
-
-# PROBAR pip install gdata que en la página de python dice que se puede así. Es para aplicaciones Google
-# https://pypi.org/project/gdata/
-#pip install gdata
-#sudo -H pip3 install gdata

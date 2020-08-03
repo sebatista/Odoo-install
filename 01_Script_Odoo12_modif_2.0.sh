@@ -9,16 +9,18 @@ sudo apt-get upgrade -y
 # Instalar dependencias de python para Odoo 11
 sudo -H apt-get install python3-pip -y
 sudo -H apt-get install curl -y
-sudo -H apt-get install software-properties-common -y
-sudo -H apt-get install mc -y
-sudo -H apt-get install postgresql -y
-sudo -H apt-get install python-psycopg2 -y
-sudo -H apt-get install libpq-dev -y
 sudo -H apt-get install git -y
-sudo -H apt-get install libsasl2-dev -y
-sudo -H apt-get install python-dev -y
-sudo -H apt-get install libldap2-dev -y
-sudo -H apt-get install libssl-dev -y
+
+# Probar sin éstos paquetes
+#sudo -H apt-get install python-psycopg2 -y
+#sudo -H apt-get install python-dev -y
+#sudo -H apt-get install postgresql -y
+#sudo -H apt-get install software-properties-common -y
+#sudo -H apt-get install mc -y
+#sudo -H apt-get install libpq-dev -y
+#sudo -H apt-get install libsasl2-dev -y
+#sudo -H apt-get install libldap2-dev -y
+#sudo -H apt-get install libssl-dev -y
 
 pip3 install --upgrade pip
 pip3 install --upgrade setuptools 
@@ -44,7 +46,7 @@ pip3 install passlib
 pip3 install Pillow
 pip3 install psutil
 pip3 install psycogreen
-pip3 install psycopg2
+#pip3 install psycopg2           # Dió Error, está con sudo apt-get install!!!!!
 pip3 install pydot
 pip3 install pyparsing
 pip3 install PyPDF2
@@ -68,8 +70,13 @@ pip3 install xlrd
 pip3 install phonenumbers
 pip3 install pycryptodome
 
-# Instacion de dependecias para Web Odoo
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+# REVISAR QUE ES ÉSTO????
+#  WARNING: The script qr is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+#  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+
+# Dependecias para Web Odoo
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo -H apt-get install nodejs -y
 sudo -H apt-get install build-essential -y
 sudo -H apt-get install gcc -y
@@ -79,17 +86,17 @@ sudo -H npm install -g less
 sudo -H npm install -g less-plugin-clean-css
 sudo -H apt-get install node-less -y
 
-# Instalacion de Postgresql 9.6
-# En Debian 9.5 esta en los repositorios pero si no esta usar:
-#
-# sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-# wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+# PostgreSQL
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+sudo apt install wget ca-certificates
+#wget --no-check-certificate --verbose -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add –
+wget --quiet -O psqlkey https://www.postgresql.org/media/keys/ACCC4CF8.asc
+sudo apt-key add psqlkey
+#sudo rm psql
+
 sudo -H apt-get update
-sudo -H apt-get install postgresql-9.5 -y
-sudo -H apt-get install postgresql-client-9.5 -y
-sudo -H apt-get install postgresql-contrib-9.5 -y
-sudo -H apt-get install libpq5 -y
-sudo -H apt-get install sysstat -y
+sudo -H apt-get install postgresql-12 -y
+sudo -H apt-get install pgadmin4 -y
 
 # Creamos el usuario para la base de datos de Odoo
 sudo su postgres -c "createuser -s odoo"
