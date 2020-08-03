@@ -6,7 +6,7 @@ Description=Odoo Open Source ERP and CRM
 [Service]
 Type=simple
 PermissionsStartOnly=true
-SyslogIdentifier=odoo-server
+SyslogIdentifier=odoo
 User=odoo
 Group=odoo
 ExecStart=/opt/odoo/odoo/odoo-bin --config=/etc/odoo.conf
@@ -21,13 +21,10 @@ sudo chmod 755 /lib/systemd/system/odoo.service
 sudo chown root: /lib/systemd/system/odoo.service
 
 # Inicializamos
-sudo systemctl start odoo
+sudo systemctl start odoo.service
 
 # Detenemos
-sudo systemctl stop odoo
+sudo systemctl stop odoo.service
 
 # Inicializar Automáticamente
 sudo systemctl enable odoo.service
-
-
-
