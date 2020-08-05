@@ -6,21 +6,22 @@
 sudo apt-get update
 sudo apt-get upgrade -y
 
-# Instalar dependencias de python para Odoo 11
+# Instalar dependencias de python para Odoo
 sudo -H apt-get install python3-pip -y
 sudo -H apt-get install curl -y
 sudo -H apt-get install git -y
 
+sudo -H apt-get install software-properties-common -y
+sudo -H apt-get install mc -y
+sudo -H apt-get install libpq-dev -y
+sudo -H apt-get install libsasl2-dev -y
+sudo -H apt-get install libldap2-dev -y
+sudo -H apt-get install libssl-dev -y
+sudo -H apt-get install python-psycopg2 -y
+sudo -H apt-get install python-dev -y
+
 # Probar sin éstos paquetes
-#sudo -H apt-get install python-psycopg2 -y
-#sudo -H apt-get install python-dev -y
 #sudo -H apt-get install postgresql -y
-#sudo -H apt-get install software-properties-common -y
-#sudo -H apt-get install mc -y
-#sudo -H apt-get install libpq-dev -y
-#sudo -H apt-get install libsasl2-dev -y
-#sudo -H apt-get install libldap2-dev -y
-#sudo -H apt-get install libssl-dev -y
 
 pip3 install --upgrade pip
 pip3 install --upgrade setuptools 
