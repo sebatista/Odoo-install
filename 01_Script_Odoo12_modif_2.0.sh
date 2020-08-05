@@ -47,7 +47,6 @@ pip3 install passlib
 pip3 install Pillow
 pip3 install psutil
 pip3 install psycogreen
-#pip3 install psycopg2           # Dió Error, está con sudo apt-get install!!!!!
 pip3 install pydot
 pip3 install pyparsing
 pip3 install PyPDF2
@@ -70,6 +69,7 @@ pip3 install xlwt
 pip3 install xlrd 
 pip3 install phonenumbers
 pip3 install pycryptodome
+#pip3 install psycopg2           # Dió Error, está con sudo apt-get install!!!!!
 
 # REVISAR QUE ES ÉSTO????
 #  WARNING: The script qr is installed in '/home/ubuntu/.local/bin' which is not on PATH.
@@ -90,8 +90,10 @@ sudo -H apt-get install node-less -y
 # PostgreSQL
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 sudo apt install wget ca-certificates
+#wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add –
+#wget -q -O psqlkey https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add psqlkey
 #wget --no-check-certificate --verbose -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add –
-wget --quiet -O psqlkey https://www.postgresql.org/media/keys/ACCC4CF8.asc
+wget -q -O psqlkey https://www.postgresql.org/media/keys/ACCC4CF8.asc
 sudo apt-key add psqlkey
 #sudo rm psql
 

@@ -22,5 +22,5 @@ sudo -s
 #PROBAR
 #sudo -s /bin/bash -c "python /opt/odoo/gdata-2.0.18/setup.py install"
 cd /opt/odoo/gdata-2.0.18/
-python setup.py install
+python3 setup.py install
 exit
