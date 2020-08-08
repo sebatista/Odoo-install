@@ -116,35 +116,15 @@ git clone --depth 1 --branch 12.0 --single-branch https://github.com/odoo/odoo.g
 #----------------------------------------------------------------------------------
 #Instalamos las dependendencias y requerimientos de Odoo.
 cd odoo/
-pip3 install -r requirements.txt
-
-pip3 install Pillow==6.1.0
-pip3 install psutil==4.3.1
-pip3 install psycopg2==2.7.3.1
-pip3 install pyparsing==2.1.10
-pip3 install pydot==1.2.3
-pip3 install pyldap==2.4.28
-pip3 install PyPDF2==1.26.0
-pip3 install pyserial
-pip3 install python-dateutil
-pip3 install pyusb==1.0.0
-pip3 install qrcode
-pip3 install reportlab
-pip3 install suds-jurko
-pip3 install python-stdnum
-pip3 install vatnumber
-pip3 install vobject==0.9.3
-pip3 install Werkzeug==0.11.15
-pip3 install XlsxWriter==0.9.3
-pip3 install xlwt==1.3.*
-pip3 install xlrd==1.0.0
+pip3 install -r ./requirements.txt
+pip3 install -r ./doc/requirements.txt
 
 #----------------------------------------------------------------------------------
 # Install Wkhtmltopdf if needed
 # https://github.com/wkhtmltopdf/wkhtmltopdf/releases
 
 #Ubuntu 18.04 Bionic Beaver
-sudo wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
+wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
 sudo gdebi --n `basename https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb`
 
 # Continuar
@@ -155,7 +135,6 @@ sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bin
 # sudo su - odoo -s /bin/bash
 cd odoo/
 python3 odoo-bin --addons-path=addons -d mydb
-
 
 #----------------------------------------------------------------------------------
 
