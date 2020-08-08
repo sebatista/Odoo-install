@@ -105,6 +105,18 @@ sudo -u postgres createuser -s $USER
 createdb $USER
 
 #----------------------------------------------------------------------------------
+# Install Wkhtmltopdf if needed
+# https://github.com/wkhtmltopdf/wkhtmltopdf/releases
+
+#Ubuntu 18.04 Bionic Beaver
+wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
+sudo gdebi --n `basename https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb`
+
+# Continuar
+sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin
+sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bin
+
+#----------------------------------------------------------------------------------
 # ========== Odoo ==========
 # git clone https://github.com/odoo/odoo.git
 cd /opt/
@@ -120,23 +132,62 @@ pip3 install -r ./requirements.txt
 pip3 install -r ./doc/requirements.txt
 
 #----------------------------------------------------------------------------------
-# Install Wkhtmltopdf if needed
-# https://github.com/wkhtmltopdf/wkhtmltopdf/releases
-
-#Ubuntu 18.04 Bionic Beaver
-wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
-sudo gdebi --n `basename https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb`
-
-# Continuar
-sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin
-sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bin
-
-#----------------------------------------------------------------------------------
 # sudo su - odoo -s /bin/bash
 cd odoo/
-python3 odoo-bin --addons-path=addons -d mydb
+python3 odoo-bin --addons-path=addons -d sise
 
 #----------------------------------------------------------------------------------
+sudo mkdir /var/log/odoo
+sudo chown -R sise:sise /var/log/odoo
 
+#----------------------------------------------------------------------------------
+# Creamos el archivo de configuracion de odoo
+cat <<EOF > ~/odoo-server.conf
+[options]
+; admin_passwd = admin
+db_host = False
+db_port = False
+db_user = odoo
+db_password = False
+logfile = /var/log/odoo/odoo-server.log
+addons_path = /opt/odoo/odoo-server/addons
+;,/opt/odoo/addons/account-financial-tools-11.0,/opt/odoo/addons/argentina-sale-11.0,/opt/odoo/addons/reporting-engine-11.0,/opt/odoo/addons/account-payment-11.0,/opt/odoo/addons/miscellaneous-11.0,/opt/odoo/addons/stock-11.0,/opt/odoo/addons/aeroo_reports-11.0,/opt/odoo/addons/odoo-argentina-11.0,/opt/odoo/addons/argentina-reporting-11.0,/opt/odoo/addons/partner_identification
+EOF
+
+sudo cp ~/odoo-server.conf /etc/odoo-server.conf
+sudo chown sise: /etc/odoo-server.conf
+sudo chmod 640 /etc/odoo-server.conf
+
+#----------------------------------------------------------------------------------
+# SERVICIO ODOO ver 2.0
+cat <<EOF > ~/odoo-server.service
+[Unit]
+Description=Odoo Open Source ERP and CRM
+
+[Service]
+Type=simple
+PermissionsStartOnly=true
+SyslogIdentifier=odoo-server
+User=sise
+Group=sise
+ExecStart=/opt/odoo/odoo-server/odoo-bin --config=/etc/odoo-server.conf
+WorkingDirectory=/opt/odoo/odoo-server/
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo cp ~/odoo-server.service /lib/systemd/system/
+sudo chmod 755 /lib/systemd/system/odoo-server.service
+sudo chown root: /lib/systemd/system/odoo-server.service
+
+# Inicializamos
+sudo systemctl start odoo-server
+
+# Detenemos
+sudo systemctl stop odoo-server
+
+# Inicializar Automáticamente
+sudo systemctl enable odoo-server.service
 
 
