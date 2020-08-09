@@ -18,10 +18,19 @@ sudo apt-add-repository 'deb http://security.ubuntu.com/ubuntu bionic-security m
 sudo apt update
 sudo apt upgrade -y
 sudo apt autoremove -y
+
 #----------------------------------------------------------------------------------
-# ========== Git ==========
-# git --version
-sudo apt install git -y
+# ========== Creación de Directorio ==========
+# Crear directorios de Instalación
+if [ -d /opt/odoo/ ] ;
+then
+	echo "Directorio /opt/odoo/ existente"
+else
+	sudo mkdir /opt/odoo
+	echo "Directorio /opt/odoo creado"
+fi
+cd /opt/odoo/
+sudo chown sise:sise -R /opt/odoo/
 
 #----------------------------------------------------------------------------------
 # ========== Python 3 ==========
@@ -43,6 +52,7 @@ sudo apt-get install python3-tk -y
 
 #----------------------------------------------------------------------------------
 # ========== dependencias de development previas ==========
+sudo apt-get install git -y
 sudo apt-get install software-properties-common
 sudo apt-get install libxslt-dev -y
 sudo apt-get install build-essential -y
@@ -75,13 +85,19 @@ sudo apt-get install libfribidi-dev -y
 sudo apt-get install libxcb1-dev -y
 sudo apt-get install ca-certificates -y
 sudo apt-get install libcups2-dev -y
+sudo apt-get install libmysqlclient-dev -y
+sudo apt-get install libmariadbclient-dev -y
 
 sudo npm install -g rtlcss
 
 #----------------------------------------------------------------------------------
+cd /opt/odoo/
+
 #Descargarlo manualmente
-wget http://security.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
+wget http://security.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1.1_amd64.deb 
 sudo apt install ./libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
+#sudo rm ./libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
+
 #Agregar repositorio
 sudo add-apt-repository ppa:linuxuprising/libpng12
 sudo apt update
@@ -93,9 +109,10 @@ sudo apt install libpng12-0
 
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 
+cd /opt/odoo/
 wget -O psqlkey https://www.postgresql.org/media/keys/ACCC4CF8.asc
 sudo apt-key add psqlkey
-#sudo rm psql
+#sudo rm psqlkey
 
 sudo apt-get update
 sudo apt-get install postgresql-12 -y
@@ -109,9 +126,12 @@ createdb $USER
 # Install Wkhtmltopdf if needed
 # https://github.com/wkhtmltopdf/wkhtmltopdf/releases
 
+cd /opt/odoo/
+
 #Ubuntu 18.04 Bionic Beaver
 wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
 sudo gdebi --n `basename https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb`
+#sudo rm wkhtmltox_0.12.5-1.bionic_amd64.deb
 
 # Continuar
 sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin
@@ -120,22 +140,22 @@ sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bin
 #----------------------------------------------------------------------------------
 # ========== Odoo ==========
 # git clone https://github.com/odoo/odoo.git
-cd /opt/
-sudo mkdir odoo
-cd odoo
-sudo chown sise:sise ./
+
+cd /opt/odoo/
 git clone --depth 1 --branch 12.0 --single-branch https://github.com/odoo/odoo.git odoo-server/
 
 #----------------------------------------------------------------------------------
 #Instalamos las dependendencias y requerimientos de Odoo.
-cd odoo/
-pip3 install -r ./requirements.txt
-pip3 install -r ./doc/requirements.txt
+cd /opt/odoo/
+pip3 install --user -r odoo-server/requirements.txt
+pip3 install --user -r odoo-server/doc/requirements.txt
+
+pip3 install --user phonenumbers
 
 #----------------------------------------------------------------------------------
 # sudo su - odoo -s /bin/bash
-cd odoo/
-python3 odoo-bin --addons-path=addons -d sise
+cd /opt/odoo/
+python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d sise
 
 #----------------------------------------------------------------------------------
 sudo mkdir /var/log/odoo
@@ -151,9 +171,22 @@ db_port = False
 db_user = odoo
 db_password = False
 logfile = /var/log/odoo/odoo-server.log
-addons_path = /opt/odoo/odoo-server/addons
+addons_path = /opt/odoo/addons,/opt/odoo/odoo-server/addons,
+
+;/opt/odoo/addons/ADHOC/account-analytic,/opt/odoo/addons/ADHOC/account-financial-tools,/opt/odoo/addons/ADHOC/account-invoicing,/opt/odoo/addons/ADHOC/account-payment,/opt/odoo/addons/ADHOC/aeroo_reports,/opt/odoo/addons/ADHOC/argentina-reporting,/opt/odoo/addons/ADHOC/argentina-sale,/opt/odoo/addons/ADHOC/hr,/opt/odoo/addons/ADHOC/manufacture,/opt/odoo/addons/ADHOC/miscellaneous,/opt/odoo/addons/ADHOC/multi-store,/opt/odoo/addons/ADHOC/odoo-argentina,/opt/odoo/addons/ADHOC/odoo-support,/opt/odoo/addons/ADHOC/partner,/opt/odoo/addons/ADHOC/patches,/opt/odoo/addons/ADHOC/product,/opt/odoo/addons/ADHOC/project,/opt/odoo/addons/ADHOC/purchase,/opt/odoo/addons/ADHOC/reporting-engine,/opt/odoo/addons/ADHOC/sale,/opt/odoo/addons/ADHOC/stock,/opt/odoo/addons/ADHOC/survey,/opt/odoo/addons/ADHOC/website,
+
+;/opt/odoo/addons/OCA/account-analytic,/opt/odoo/addons/OCA/account-closing,/opt/odoo/addons/OCA/account-financial-reporting,/opt/odoo/addons/OCA/account-financial-tools,/opt/odoo/addons/OCA/account-invoice-reporting,/opt/odoo/addons/OCA/account-invoicing,/opt/odoo/addons/OCA/account-payment,/opt/odoo/addons/OCA/account-reconcile,/opt/odoo/addons/OCA/bank-payment,/opt/odoo/addons/OCA/commission,/opt/odoo/addons/OCA/contract,/opt/odoo/addons/OCA/credit-control,/opt/odoo/addons/OCA/crm,/opt/odoo/addons/OCA/currency,/opt/odoo/addons/OCA/ddmrp,/opt/odoo/addons/OCA/donation,/opt/odoo/addons/OCA/e-commerce,/opt/odoo/addons/OCA/event,/opt/odoo/addons/OCA/field-service,/opt/odoo/addons/OCA/geospatial,/opt/odoo/addons/OCA/hr,/opt/odoo/addons/OCA/hr-timesheet,/opt/odoo/addons/OCA/knowledge,/opt/odoo/addons/OCA/manufacture,/opt/odoo/addons/OCA/manufacture-reporting,/opt/odoo/addons/OCA/margin-analysis,/opt/odoo/addons/OCA/mis-builder,/opt/odoo/addons/OCA/multi-company,/opt/odoo/addons/OCA/OpenUpgrade,/opt/odoo/addons/OCA/operating-unit,/opt/odoo/addons/OCA/partner-contact,/opt/odoo/addons/OCA/pos,/opt/odoo/addons/OCA/product-attribute,/opt/odoo/addons/OCA/product-variant,/opt/odoo/addons/OCA/project,/opt/odoo/addons/OCA/project-reporting,/opt/odoo/addons/OCA/purchase-workflow,/opt/odoo/addons/OCA/queue,/opt/odoo/addons/OCA/reporting-engine,/opt/odoo/addons/OCA/report-print-send,/opt/odoo/addons/OCA/rma,/opt/odoo/addons/OCA/sale-financial,/opt/odoo/addons/OCA/sale-reporting,/opt/odoo/addons/OCA/sale-workflow,/opt/odoo/addons/OCA/server-auth,/opt/odoo/addons/OCA/server-backend,/opt/odoo/addons/OCA/server-tools,/opt/odoo/addons/OCA/server-ux,/opt/odoo/addons/OCA/social,/opt/odoo/addons/OCA/stock-logistics-barcode,/opt/odoo/addons/OCA/stock-logistics-reporting,/opt/odoo/addons/OCA/stock-logistics-warehouse,/opt/odoo/addons/OCA/stock-logistics-workflow,/opt/odoo/addons/OCA/survey,/opt/odoo/addons/OCA/timesheet,/opt/odoo/addons/OCA/vertical-association,/opt/odoo/addons/OCA/vertical-hotel,/opt/odoo/addons/OCA/web,/opt/odoo/addons/OCA/website,
 
 EOF
+
+
+/opt/odoo/addons/others/it-projects-llc-access-addons,
+/opt/odoo/addons/others/it-projects-llc-mail-addons,
+/opt/odoo/addons/others/it-projects-llc-sync-addons,
+/opt/odoo/addons/others/it-projects-llc-website-addons,
+/opt/odoo/addons/others/jobiols-odoo-addons,
+/opt/odoo/addons/others/regaby-odoo-addons,
+
 
 
 sudo cp ~/odoo-server.conf /etc/odoo-server.conf
@@ -244,30 +277,30 @@ sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadh
 sudo chown -R sise:sise -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
-pip3 install -r account-analytic/requirements.txt
-pip3 install -r account-financial-tools/requirements.txt
-pip3 install -r account-invoicing/requirements.txt
-pip3 install -r account-payment/requirements.txt
-pip3 install -r aeroo_reports/requirements.txt
-pip3 install -r argentina-reporting/requirements.txt
-pip3 install -r argentina-sale/requirements.txt
-pip3 install -r hr/requirements.txt
-pip3 install -r manufacture/requirements.txt
-pip3 install -r miscellaneous/requirements.txt
-#pip3 install -r multi-company/requirements.txt
-pip3 install -r multi-store/requirements.txt
-pip3 install -r odoo-argentina/requirements.txt
-pip3 install -r odoo-support/requirements.txt
-pip3 install -r partner/requirements.txt
-pip3 install -r patches/requirements.txt
-pip3 install -r product/requirements.txt
-pip3 install -r project/requirements.txt
-pip3 install -r purchase/requirements.txt
-pip3 install -r reporting-engine/requirements.txt
-pip3 install -r sale/requirements.txt
-pip3 install -r stock/requirements.txt
-pip3 install -r survey/requirements.txt
-pip3 install -r website/requirements.txt
+pip3 install --user -r account-analytic/requirements.txt
+pip3 install --user -r account-financial-tools/requirements.txt
+pip3 install --user -r account-invoicing/requirements.txt
+pip3 install --user -r account-payment/requirements.txt
+pip3 install --user -r aeroo_reports/requirements.txt
+pip3 install --user -r argentina-reporting/requirements.txt
+pip3 install --user -r argentina-sale/requirements.txt
+pip3 install --user -r hr/requirements.txt
+pip3 install --user -r manufacture/requirements.txt
+pip3 install --user -r miscellaneous/requirements.txt
+#pip3 install --user -r multi-company/requirements.txt
+pip3 install --user -r multi-store/requirements.txt
+pip3 install --user -r odoo-argentina/requirements.txt
+pip3 install --user -r odoo-support/requirements.txt
+pip3 install --user -r partner/requirements.txt
+pip3 install --user -r patches/requirements.txt
+pip3 install --user -r product/requirements.txt
+pip3 install --user -r project/requirements.txt
+pip3 install --user -r purchase/requirements.txt
+pip3 install --user -r reporting-engine/requirements.txt
+pip3 install --user -r sale/requirements.txt
+pip3 install --user -r stock/requirements.txt
+pip3 install --user -r survey/requirements.txt
+pip3 install --user -r website/requirements.txt
 
 #----------------------------------------------------------------------------------
 # Localizacion argentina OCA
@@ -355,62 +388,64 @@ sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/OCA
 sudo chown -R sise:sise -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
-pip3 install -r account-analytic/requirements.txt
-pip3 install -r account-closing/requirements.txt
-pip3 install -r account-financial-reporting/requirements.txt
-pip3 install -r account-financial-tools/requirements.txt
-pip3 install -r account-invoice-reporting/requirements.txt
-pip3 install -r account-invoicing/requirements.txt
-pip3 install -r account-payment/requirements.txt
-pip3 install -r account-reconcile/requirements.txt
-pip3 install -r bank-payment/requirements.txt
-pip3 install -r commission/requirements.txt
-pip3 install -r contract/requirements.txt
-pip3 install -r credit-control/requirements.txt
-pip3 install -r crm/requirements.txt
-pip3 install -r currency/requirements.txt
-pip3 install -r ddmrp/requirements.txt
-pip3 install -r donation/requirements.txt
-pip3 install -r e-commerce/requirements.txt
-pip3 install -r event/requirements.txt
-pip3 install -r field-service/requirements.txt
-pip3 install -r geospatial/requirements.txt
-pip3 install -r hr/requirements.txt
-pip3 install -r hr-timesheet/requirements.txt
-pip3 install -r knowledge/requirements.txt
-pip3 install -r manufacture/requirements.txt
-pip3 install -r manufacture-reporting/requirements.txt
-pip3 install -r margin-analysis/requirements.txt
-pip3 install -r mis-builder/requirements.txt
-pip3 install -r multi-company/requirements.txt
-pip3 install -r OpenUpgrade/requirements.txt
-pip3 install -r operating-unit/requirements.txt
-pip3 install -r partner-contact/requirements.txt
-pip3 install -r pos/requirements.txt
-pip3 install -r product-attribute/requirements.txt
-pip3 install -r product-variant/requirements.txt
-pip3 install -r project/requirements.txt
-pip3 install -r project-reporting/requirements.txt
-pip3 install -r purchase-workflow/requirements.txt
-pip3 install -r queue/requirements.txt
-pip3 install -r reporting-engine/requirements.txt
-pip3 install -r report-print-send/requirements.txt # ERROR pycups
-pip3 install -r rma/requirements.txt
-pip3 install -r sale-financial/requirements.txt
-pip3 install -r sale-reporting/requirements.txt
-pip3 install -r sale-workflow/requirements.txt
-pip3 install -r server-auth/requirements.txt
-pip3 install -r server-backend/requirements.txt # ERROR mysqlclient
-pip3 install -r server-tools/requirements.txt
-pip3 install -r server-ux/requirements.txt
-pip3 install -r social/requirements.txt
-pip3 install -r stock-logistics-barcode/requirements.txt
-pip3 install -r stock-logistics-reporting/requirements.txt
-pip3 install -r stock-logistics-warehouse/requirements.txt
-pip3 install -r stock-logistics-workflow/requirements.txt
-pip3 install -r survey/requirements.txt
-pip3 install -r timesheet/requirements.txt
-pip3 install -r vertical-association/requirements.txt
-pip3 install -r vertical-hotel/requirements.txt
-pip3 install -r web/requirements.txt
-pip3 install -r website/requirements.txt
+pip3 install --user -r account-analytic/requirements.txt
+pip3 install --user -r account-closing/requirements.txt
+pip3 install --user -r account-financial-reporting/requirements.txt
+pip3 install --user -r account-financial-tools/requirements.txt
+pip3 install --user -r account-invoice-reporting/requirements.txt
+pip3 install --user -r account-invoicing/requirements.txt
+pip3 install --user -r account-payment/requirements.txt
+pip3 install --user -r account-reconcile/requirements.txt
+pip3 install --user -r bank-payment/requirements.txt
+pip3 install --user -r commission/requirements.txt
+pip3 install --user -r contract/requirements.txt
+pip3 install --user -r credit-control/requirements.txt
+pip3 install --user -r crm/requirements.txt
+pip3 install --user -r currency/requirements.txt
+pip3 install --user -r ddmrp/requirements.txt
+pip3 install --user -r donation/requirements.txt
+pip3 install --user -r e-commerce/requirements.txt
+pip3 install --user -r event/requirements.txt
+pip3 install --user -r field-service/requirements.txt
+pip3 install --user -r geospatial/requirements.txt
+pip3 install --user -r hr/requirements.txt
+pip3 install --user -r hr-timesheet/requirements.txt
+pip3 install --user -r knowledge/requirements.txt
+pip3 install --user -r manufacture/requirements.txt
+pip3 install --user -r manufacture-reporting/requirements.txt
+pip3 install --user -r margin-analysis/requirements.txt
+pip3 install --user -r mis-builder/requirements.txt
+pip3 install --user -r multi-company/requirements.txt
+pip3 install --user -r OpenUpgrade/requirements.txt
+pip3 install --user -r operating-unit/requirements.txt
+pip3 install --user -r partner-contact/requirements.txt
+pip3 install --user -r pos/requirements.txt
+pip3 install --user -r product-attribute/requirements.txt
+pip3 install --user -r product-variant/requirements.txt
+pip3 install --user -r project/requirements.txt
+pip3 install --user -r project-reporting/requirements.txt
+pip3 install --user -r purchase-workflow/requirements.txt
+pip3 install --user -r queue/requirements.txt
+pip3 install --user -r reporting-engine/requirements.txt
+pip3 install --user -r report-print-send/requirements.txt
+pip3 install --user -r rma/requirements.txt
+pip3 install --user -r sale-financial/requirements.txt
+pip3 install --user -r sale-reporting/requirements.txt
+pip3 install --user -r sale-workflow/requirements.txt
+pip3 install --user -r server-auth/requirements.txt
+pip3 install --user -r server-backend/requirements.txt
+pip3 install --user -r server-tools/requirements.txt
+pip3 install --user -r server-ux/requirements.txt
+pip3 install --user -r social/requirements.txt
+pip3 install --user -r stock-logistics-barcode/requirements.txt
+pip3 install --user -r stock-logistics-reporting/requirements.txt
+pip3 install --user -r stock-logistics-warehouse/requirements.txt
+pip3 install --user -r stock-logistics-workflow/requirements.txt
+pip3 install --user -r survey/requirements.txt
+pip3 install --user -r timesheet/requirements.txt
+pip3 install --user -r vertical-association/requirements.txt
+pip3 install --user -r vertical-hotel/requirements.txt
+pip3 install --user -r web/requirements.txt
+pip3 install --user -r website/requirements.txt
+
+#----------------------------------------------------------------------------------
