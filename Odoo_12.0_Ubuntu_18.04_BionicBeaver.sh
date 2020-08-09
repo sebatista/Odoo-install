@@ -177,17 +177,9 @@ addons_path = /opt/odoo/addons,/opt/odoo/odoo-server/addons,
 
 ;/opt/odoo/addons/OCA/account-analytic,/opt/odoo/addons/OCA/account-closing,/opt/odoo/addons/OCA/account-financial-reporting,/opt/odoo/addons/OCA/account-financial-tools,/opt/odoo/addons/OCA/account-invoice-reporting,/opt/odoo/addons/OCA/account-invoicing,/opt/odoo/addons/OCA/account-payment,/opt/odoo/addons/OCA/account-reconcile,/opt/odoo/addons/OCA/bank-payment,/opt/odoo/addons/OCA/commission,/opt/odoo/addons/OCA/contract,/opt/odoo/addons/OCA/credit-control,/opt/odoo/addons/OCA/crm,/opt/odoo/addons/OCA/currency,/opt/odoo/addons/OCA/ddmrp,/opt/odoo/addons/OCA/donation,/opt/odoo/addons/OCA/e-commerce,/opt/odoo/addons/OCA/event,/opt/odoo/addons/OCA/field-service,/opt/odoo/addons/OCA/geospatial,/opt/odoo/addons/OCA/hr,/opt/odoo/addons/OCA/hr-timesheet,/opt/odoo/addons/OCA/knowledge,/opt/odoo/addons/OCA/manufacture,/opt/odoo/addons/OCA/manufacture-reporting,/opt/odoo/addons/OCA/margin-analysis,/opt/odoo/addons/OCA/mis-builder,/opt/odoo/addons/OCA/multi-company,/opt/odoo/addons/OCA/OpenUpgrade,/opt/odoo/addons/OCA/operating-unit,/opt/odoo/addons/OCA/partner-contact,/opt/odoo/addons/OCA/pos,/opt/odoo/addons/OCA/product-attribute,/opt/odoo/addons/OCA/product-variant,/opt/odoo/addons/OCA/project,/opt/odoo/addons/OCA/project-reporting,/opt/odoo/addons/OCA/purchase-workflow,/opt/odoo/addons/OCA/queue,/opt/odoo/addons/OCA/reporting-engine,/opt/odoo/addons/OCA/report-print-send,/opt/odoo/addons/OCA/rma,/opt/odoo/addons/OCA/sale-financial,/opt/odoo/addons/OCA/sale-reporting,/opt/odoo/addons/OCA/sale-workflow,/opt/odoo/addons/OCA/server-auth,/opt/odoo/addons/OCA/server-backend,/opt/odoo/addons/OCA/server-tools,/opt/odoo/addons/OCA/server-ux,/opt/odoo/addons/OCA/social,/opt/odoo/addons/OCA/stock-logistics-barcode,/opt/odoo/addons/OCA/stock-logistics-reporting,/opt/odoo/addons/OCA/stock-logistics-warehouse,/opt/odoo/addons/OCA/stock-logistics-workflow,/opt/odoo/addons/OCA/survey,/opt/odoo/addons/OCA/timesheet,/opt/odoo/addons/OCA/vertical-association,/opt/odoo/addons/OCA/vertical-hotel,/opt/odoo/addons/OCA/web,/opt/odoo/addons/OCA/website,
 
+;/opt/odoo/addons/others/it-projects-llc-access-addons,/opt/odoo/addons/others/it-projects-llc-mail-addons,/opt/odoo/addons/others/it-projects-llc-sync-addons,/opt/odoo/addons/others/it-projects-llc-website-addons,/opt/odoo/addons/others/jobiols-odoo-addons,/opt/odoo/addons/others/regaby-odoo-addons,
+
 EOF
-
-
-/opt/odoo/addons/others/it-projects-llc-access-addons,
-/opt/odoo/addons/others/it-projects-llc-mail-addons,
-/opt/odoo/addons/others/it-projects-llc-sync-addons,
-/opt/odoo/addons/others/it-projects-llc-website-addons,
-/opt/odoo/addons/others/jobiols-odoo-addons,
-/opt/odoo/addons/others/regaby-odoo-addons,
-
-
 
 sudo cp ~/odoo-server.conf /etc/odoo-server.conf
 sudo chown sise: /etc/odoo-server.conf
@@ -217,10 +209,10 @@ sudo chmod 755 /lib/systemd/system/odoo-server.service
 sudo chown root: /lib/systemd/system/odoo-server.service
 
 # Inicializamos
-sudo systemctl start odoo-server
+sudo systemctl start odoo-server.service
 
 # Detenemos
-sudo systemctl stop odoo-server
+sudo systemctl stop odoo-server.service
 
 # Inicializar Automáticamente
 sudo systemctl enable odoo-server.service
@@ -449,3 +441,50 @@ pip3 install --user -r web/requirements.txt
 pip3 install --user -r website/requirements.txt
 
 #----------------------------------------------------------------------------------
+# Localizacion argentina Otros/Varios
+
+# Crear directorios para Addons
+if [ -d /opt/odoo/addons/ ] ;
+then
+	echo "Directorio /opt/odoo/addons/ existente"
+else
+	sudo mkdir /opt/odoo/addons
+	echo "Directorio /opt/odoo/addons/ creado"
+fi
+
+# Crear directorios para OTROS
+if [ -d /opt/odoo/addons/others/ ];
+then
+	echo "El directorio /opt/odoo/addons/others/ ya existe."
+else
+	sudo -H mkdir /opt/odoo/addons/others
+	echo "Directorio /opt/odoo/addons/others/ creado."
+fi
+
+cd /opt/odoo/addons/others
+
+
+# 2020-01-01 - Jobiols -> solo utilizarémos ARBA y SICORE.
+# 2020-01-01 - Regaby -> solo utilizaremos ???
+sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/it-projects-llc/access-addons it-projects-llc-access-addons
+sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/it-projects-llc/mail-addons it-projects-llc-mail-addons
+sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/it-projects-llc/sync-addons it-projects-llc-sync-addons
+sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/it-projects-llc/website-addons it-projects-llc-website-addons
+sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/regaby/odoo-addons regaby-odoo-addons
+sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/jobiols/odoo-addons jobiols-odoo-addons
+
+#REVISAR 
+#https://github.com/jobiols/rafi16jan-backend-theme
+#https://github.com/treytux/odoo-mailchimp-tools
+
+sudo chown -R sise:sise -R /opt/odoo/addons
+sudo chmod -R 775 /opt/odoo/addons
+
+pip3 install --user -r it-projects-llc-access-addons/requirements.txt
+pip3 install --user -r it-projects-llc-mail-addons/requirements.txt
+pip3 install --user -r it-projects-llc-sync-addons/requirements.txt
+pip3 install --user -r it-projects-llc-website-addons/requirements.txt
+pip3 install --user -r regaby-odoo-addons/requirements.txt
+pip3 install --user -r jobiols-odoo-addons/requirements.txt
+pip3 install --user -r jobiols-odoo-addons/l10n_ar_export_arba/requirements.txt
+pip3 install --user -r jobiols-odoo-addons/l10n_ar_export_sicore/requirements.txt
