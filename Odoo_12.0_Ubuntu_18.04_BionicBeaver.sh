@@ -63,10 +63,8 @@ sudo apt-get install node-less -y
 sudo apt-get install gdebi -y
 sudo apt-get install wget -y
 sudo apt-get install zlib1g-dev -y
-sudo apt-get install npm -y
 sudo apt-get install libxml2-dev -y
 sudo apt-get install libxslt1-dev -y
-sudo apt-get install libssl-dev -y
 sudo apt-get install libffi-dev -y
 sudo apt-get install libblas-dev -y
 sudo apt-get install libatlas-base-dev -y
@@ -87,6 +85,10 @@ sudo apt-get install ca-certificates -y
 sudo apt-get install libcups2-dev -y
 sudo apt-get install libmysqlclient-dev -y
 sudo apt-get install libmariadbclient-dev -y
+
+sudo apt-get install libssl-dev -y
+
+sudo apt-get install npm -y
 
 sudo npm install -g rtlcss
 
@@ -155,11 +157,12 @@ pip3 install --user phonenumbers
 #----------------------------------------------------------------------------------
 # sudo su - odoo -s /bin/bash
 cd /opt/odoo/
-python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d sise
+python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER -i base
+python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER
 
 #----------------------------------------------------------------------------------
 sudo mkdir /var/log/odoo
-sudo chown -R sise:sise /var/log/odoo
+sudo chown -R $USER:$USER /var/log/odoo
 
 #----------------------------------------------------------------------------------
 # Creamos el archivo de configuracion de odoo
@@ -168,8 +171,9 @@ cat <<EOF > ~/odoo-server.conf
 ; admin_passwd = admin
 db_host = False
 db_port = False
-db_user = odoo
-db_password = False
+db_name = $USER
+db_user = $USER
+db_password = $USER
 logfile = /var/log/odoo/odoo-server.log
 addons_path = /opt/odoo/addons,/opt/odoo/odoo-server/addons,
 
@@ -182,7 +186,7 @@ addons_path = /opt/odoo/addons,/opt/odoo/odoo-server/addons,
 EOF
 
 sudo cp ~/odoo-server.conf /etc/odoo-server.conf
-sudo chown sise: /etc/odoo-server.conf
+sudo chown $USER: /etc/odoo-server.conf
 sudo chmod 640 /etc/odoo-server.conf
 
 #----------------------------------------------------------------------------------
@@ -195,8 +199,8 @@ Description=Odoo Open Source ERP and CRM
 Type=simple
 PermissionsStartOnly=true
 SyslogIdentifier=odoo-server
-User=sise
-Group=sise
+User=$USER
+Group=$USER
 ExecStart=/opt/odoo/odoo-server/odoo-bin --config=/etc/odoo-server.conf
 WorkingDirectory=/opt/odoo/odoo-server/
 
@@ -206,7 +210,7 @@ EOF
 
 sudo cp ~/odoo-server.service /lib/systemd/system/
 sudo chmod 755 /lib/systemd/system/odoo-server.service
-sudo chown root: /lib/systemd/system/odoo-server.service
+sudo chown $USER: /lib/systemd/system/odoo-server.service
 
 # Inicializamos
 sudo systemctl start odoo-server.service
