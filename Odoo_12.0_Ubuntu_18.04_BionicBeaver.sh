@@ -30,7 +30,7 @@ else
 	echo "Directorio /opt/odoo creado"
 fi
 cd /opt/odoo/
-sudo chown sise:sise -R /opt/odoo/
+sudo chown $USER:$USER -R /opt/odoo/
 
 #----------------------------------------------------------------------------------
 # ========== Python 3 ==========
@@ -157,8 +157,8 @@ pip3 install --user phonenumbers
 #----------------------------------------------------------------------------------
 # sudo su - odoo -s /bin/bash
 cd /opt/odoo/
-python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER -i base
-python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER
+#python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER -i base
+#python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER
 
 #----------------------------------------------------------------------------------
 sudo mkdir /var/log/odoo
@@ -213,13 +213,16 @@ sudo chmod 755 /lib/systemd/system/odoo-server.service
 sudo chown $USER: /lib/systemd/system/odoo-server.service
 
 # Inicializamos
-sudo systemctl start odoo-server.service
+#sudo systemctl start odoo-server.service
+systemctl start odoo-server.service
 
 # Detenemos
-sudo systemctl stop odoo-server.service
+#sudo systemctl stop odoo-server.service
+systemctl stop odoo-server.service
 
 # Inicializar Automáticamente
-sudo systemctl enable odoo-server.service
+#sudo systemctl enable odoo-server.service
+systemctl enable odoo-server.service
 
 #----------------------------------------------------------------------------------
 # Localizacion argentina ADHOC
@@ -270,33 +273,33 @@ sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadh
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/survey survey
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/website website
 
-sudo chown -R sise:sise -R /opt/odoo/addons
+sudo chown -R $USER:$USER -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
-pip3 install --user -r account-analytic/requirements.txt
-pip3 install --user -r account-financial-tools/requirements.txt
-pip3 install --user -r account-invoicing/requirements.txt
-pip3 install --user -r account-payment/requirements.txt
-pip3 install --user -r aeroo_reports/requirements.txt
-pip3 install --user -r argentina-reporting/requirements.txt
-pip3 install --user -r argentina-sale/requirements.txt
-pip3 install --user -r hr/requirements.txt
-pip3 install --user -r manufacture/requirements.txt
-pip3 install --user -r miscellaneous/requirements.txt
-#pip3 install --user -r multi-company/requirements.txt
-pip3 install --user -r multi-store/requirements.txt
-pip3 install --user -r odoo-argentina/requirements.txt
-pip3 install --user -r odoo-support/requirements.txt
-pip3 install --user -r partner/requirements.txt
-pip3 install --user -r patches/requirements.txt
-pip3 install --user -r product/requirements.txt
-pip3 install --user -r project/requirements.txt
-pip3 install --user -r purchase/requirements.txt
-pip3 install --user -r reporting-engine/requirements.txt
-pip3 install --user -r sale/requirements.txt
-pip3 install --user -r stock/requirements.txt
-pip3 install --user -r survey/requirements.txt
-pip3 install --user -r website/requirements.txt
+python3 -m pip install --user -r account-analytic/requirements.txt
+python3 -m pip install --user -r account-financial-tools/requirements.txt
+python3 -m pip install --user -r account-invoicing/requirements.txt
+python3 -m pip install --user -r account-payment/requirements.txt
+python3 -m pip install --user -r aeroo_reports/requirements.txt
+python3 -m pip install --user -r argentina-reporting/requirements.txt
+python3 -m pip install --user -r argentina-sale/requirements.txt
+python3 -m pip install --user -r hr/requirements.txt
+python3 -m pip install --user -r manufacture/requirements.txt
+python3 -m pip install --user -r miscellaneous/requirements.txt
+#python3 -m pip install --user -r multi-company/requirements.txt
+python3 -m pip install --user -r multi-store/requirements.txt
+python3 -m pip install --user -r odoo-argentina/requirements.txt
+python3 -m pip install --user -r odoo-support/requirements.txt
+python3 -m pip install --user -r partner/requirements.txt
+python3 -m pip install --user -r patches/requirements.txt
+python3 -m pip install --user -r product/requirements.txt
+python3 -m pip install --user -r project/requirements.txt
+python3 -m pip install --user -r purchase/requirements.txt
+python3 -m pip install --user -r reporting-engine/requirements.txt
+python3 -m pip install --user -r sale/requirements.txt
+python3 -m pip install --user -r stock/requirements.txt
+python3 -m pip install --user -r survey/requirements.txt
+python3 -m pip install --user -r website/requirements.txt
 
 #----------------------------------------------------------------------------------
 # Localizacion argentina OCA
@@ -381,68 +384,69 @@ sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/OCA
 sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/OCA/web web
 sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/OCA/website website
 
-sudo chown -R sise:sise -R /opt/odoo/addons
+sudo chown -R $USER:$USER -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
-pip3 install --user -r account-analytic/requirements.txt
-pip3 install --user -r account-closing/requirements.txt
-pip3 install --user -r account-financial-reporting/requirements.txt
-pip3 install --user -r account-financial-tools/requirements.txt
-pip3 install --user -r account-invoice-reporting/requirements.txt
-pip3 install --user -r account-invoicing/requirements.txt
-pip3 install --user -r account-payment/requirements.txt
-pip3 install --user -r account-reconcile/requirements.txt
-pip3 install --user -r bank-payment/requirements.txt
-pip3 install --user -r commission/requirements.txt
-pip3 install --user -r contract/requirements.txt
-pip3 install --user -r credit-control/requirements.txt
-pip3 install --user -r crm/requirements.txt
-pip3 install --user -r currency/requirements.txt
-pip3 install --user -r ddmrp/requirements.txt
-pip3 install --user -r donation/requirements.txt
-pip3 install --user -r e-commerce/requirements.txt
-pip3 install --user -r event/requirements.txt
-pip3 install --user -r field-service/requirements.txt
-pip3 install --user -r geospatial/requirements.txt
-pip3 install --user -r hr/requirements.txt
-pip3 install --user -r hr-timesheet/requirements.txt
-pip3 install --user -r knowledge/requirements.txt
-pip3 install --user -r manufacture/requirements.txt
-pip3 install --user -r manufacture-reporting/requirements.txt
-pip3 install --user -r margin-analysis/requirements.txt
-pip3 install --user -r mis-builder/requirements.txt
-pip3 install --user -r multi-company/requirements.txt
-pip3 install --user -r OpenUpgrade/requirements.txt
-pip3 install --user -r operating-unit/requirements.txt
-pip3 install --user -r partner-contact/requirements.txt
-pip3 install --user -r pos/requirements.txt
-pip3 install --user -r product-attribute/requirements.txt
-pip3 install --user -r product-variant/requirements.txt
-pip3 install --user -r project/requirements.txt
-pip3 install --user -r project-reporting/requirements.txt
-pip3 install --user -r purchase-workflow/requirements.txt
-pip3 install --user -r queue/requirements.txt
-pip3 install --user -r reporting-engine/requirements.txt
-pip3 install --user -r report-print-send/requirements.txt
-pip3 install --user -r rma/requirements.txt
-pip3 install --user -r sale-financial/requirements.txt
-pip3 install --user -r sale-reporting/requirements.txt
-pip3 install --user -r sale-workflow/requirements.txt
-pip3 install --user -r server-auth/requirements.txt
-pip3 install --user -r server-backend/requirements.txt
-pip3 install --user -r server-tools/requirements.txt
-pip3 install --user -r server-ux/requirements.txt
-pip3 install --user -r social/requirements.txt
-pip3 install --user -r stock-logistics-barcode/requirements.txt
-pip3 install --user -r stock-logistics-reporting/requirements.txt
-pip3 install --user -r stock-logistics-warehouse/requirements.txt
-pip3 install --user -r stock-logistics-workflow/requirements.txt
-pip3 install --user -r survey/requirements.txt
-pip3 install --user -r timesheet/requirements.txt
-pip3 install --user -r vertical-association/requirements.txt
-pip3 install --user -r vertical-hotel/requirements.txt
-pip3 install --user -r web/requirements.txt
-pip3 install --user -r website/requirements.txt
+cd /opt/odoo/addons/OCA
+python3 -m pip install --user -r account-analytic/requirements.txt
+python3 -m pip install --user -r account-closing/requirements.txt
+python3 -m pip install --user -r account-financial-reporting/requirements.txt
+python3 -m pip install --user -r account-financial-tools/requirements.txt
+python3 -m pip install --user -r account-invoice-reporting/requirements.txt
+python3 -m pip install --user -r account-invoicing/requirements.txt
+python3 -m pip install --user -r account-payment/requirements.txt
+python3 -m pip install --user -r account-reconcile/requirements.txt
+python3 -m pip install --user -r bank-payment/requirements.txt
+python3 -m pip install --user -r commission/requirements.txt
+python3 -m pip install --user -r contract/requirements.txt
+python3 -m pip install --user -r credit-control/requirements.txt
+python3 -m pip install --user -r crm/requirements.txt
+python3 -m pip install --user -r currency/requirements.txt
+python3 -m pip install --user -r ddmrp/requirements.txt
+python3 -m pip install --user -r donation/requirements.txt
+python3 -m pip install --user -r e-commerce/requirements.txt
+python3 -m pip install --user -r event/requirements.txt
+python3 -m pip install --user -r field-service/requirements.txt
+python3 -m pip install --user -r geospatial/requirements.txt
+python3 -m pip install --user -r hr/requirements.txt
+python3 -m pip install --user -r hr-timesheet/requirements.txt
+python3 -m pip install --user -r knowledge/requirements.txt
+python3 -m pip install --user -r manufacture/requirements.txt
+python3 -m pip install --user -r manufacture-reporting/requirements.txt
+python3 -m pip install --user -r margin-analysis/requirements.txt
+python3 -m pip install --user -r mis-builder/requirements.txt
+python3 -m pip install --user -r multi-company/requirements.txt
+python3 -m pip install --user -r OpenUpgrade/requirements.txt
+python3 -m pip install --user -r operating-unit/requirements.txt
+python3 -m pip install --user -r partner-contact/requirements.txt
+python3 -m pip install --user -r pos/requirements.txt
+python3 -m pip install --user -r product-attribute/requirements.txt
+python3 -m pip install --user -r product-variant/requirements.txt
+python3 -m pip install --user -r project/requirements.txt
+python3 -m pip install --user -r project-reporting/requirements.txt
+python3 -m pip install --user -r purchase-workflow/requirements.txt
+python3 -m pip install --user -r queue/requirements.txt
+python3 -m pip install --user -r reporting-engine/requirements.txt
+python3 -m pip install --user -r report-print-send/requirements.txt
+python3 -m pip install --user -r rma/requirements.txt
+python3 -m pip install --user -r sale-financial/requirements.txt
+python3 -m pip install --user -r sale-reporting/requirements.txt
+python3 -m pip install --user -r sale-workflow/requirements.txt
+python3 -m pip install --user -r server-auth/requirements.txt
+python3 -m pip install --user -r server-backend/requirements.txt
+python3 -m pip install --user -r server-tools/requirements.txt
+python3 -m pip install --user -r server-ux/requirements.txt
+python3 -m pip install --user -r social/requirements.txt
+python3 -m pip install --user -r stock-logistics-barcode/requirements.txt
+python3 -m pip install --user -r stock-logistics-reporting/requirements.txt
+python3 -m pip install --user -r stock-logistics-warehouse/requirements.txt
+python3 -m pip install --user -r stock-logistics-workflow/requirements.txt
+python3 -m pip install --user -r survey/requirements.txt
+python3 -m pip install --user -r timesheet/requirements.txt
+python3 -m pip install --user -r vertical-association/requirements.txt
+python3 -m pip install --user -r vertical-hotel/requirements.txt
+python3 -m pip install --user -r web/requirements.txt
+python3 -m pip install --user -r website/requirements.txt
 
 #----------------------------------------------------------------------------------
 # Localizacion argentina Otros/Varios
@@ -481,14 +485,14 @@ sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/job
 #https://github.com/jobiols/rafi16jan-backend-theme
 #https://github.com/treytux/odoo-mailchimp-tools
 
-sudo chown -R sise:sise -R /opt/odoo/addons
+sudo chown -R $USER:$USER -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
-pip3 install --user -r it-projects-llc-access-addons/requirements.txt
-pip3 install --user -r it-projects-llc-mail-addons/requirements.txt
-pip3 install --user -r it-projects-llc-sync-addons/requirements.txt
-pip3 install --user -r it-projects-llc-website-addons/requirements.txt
-pip3 install --user -r regaby-odoo-addons/requirements.txt
-pip3 install --user -r jobiols-odoo-addons/requirements.txt
-pip3 install --user -r jobiols-odoo-addons/l10n_ar_export_arba/requirements.txt
-pip3 install --user -r jobiols-odoo-addons/l10n_ar_export_sicore/requirements.txt
+python3 -m pip install --user -r it-projects-llc-access-addons/requirements.txt
+python3 -m pip install --user -r it-projects-llc-mail-addons/requirements.txt
+python3 -m pip install --user -r it-projects-llc-sync-addons/requirements.txt
+python3 -m pip install --user -r it-projects-llc-website-addons/requirements.txt
+python3 -m pip install --user -r regaby-odoo-addons/requirements.txt
+python3 -m pip install --user -r jobiols-odoo-addons/requirements.txt
+python3 -m pip install --user -r jobiols-odoo-addons/l10n_ar_export_arba/requirements.txt
+python3 -m pip install --user -r jobiols-odoo-addons/l10n_ar_export_sicore/requirements.txt
