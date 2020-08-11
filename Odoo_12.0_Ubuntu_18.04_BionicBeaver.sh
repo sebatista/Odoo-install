@@ -15,9 +15,9 @@ sudo add-apt-repository "deb http://mirrors.kernel.org/ubuntu/ bionic main"
 
 sudo apt-add-repository 'deb http://security.ubuntu.com/ubuntu bionic-security main'
 
-sudo apt update
-sudo apt upgrade -y
-sudo apt autoremove -y
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get autoremove -y
 
 #----------------------------------------------------------------------------------
 # ========== Creación de Directorio ==========
@@ -53,18 +53,17 @@ sudo apt-get install python3-tk -y
 #----------------------------------------------------------------------------------
 # ========== dependencias de development previas ==========
 sudo apt-get install git -y
-sudo apt-get install software-properties-common
+sudo apt-get install software-properties-common -y
 sudo apt-get install libxslt-dev -y
+sudo apt-get install libxslt1-dev -y
 sudo apt-get install build-essential -y
 sudo apt-get install libzip-dev -y 
-sudo apt-get install libldap2-dev -y
 sudo apt-get install libsasl2-dev -y
 sudo apt-get install node-less -y
 sudo apt-get install gdebi -y
 sudo apt-get install wget -y
 sudo apt-get install zlib1g-dev -y
 sudo apt-get install libxml2-dev -y
-sudo apt-get install libxslt1-dev -y
 sudo apt-get install libffi-dev -y
 sudo apt-get install libblas-dev -y
 sudo apt-get install libatlas-base-dev -y
@@ -84,11 +83,14 @@ sudo apt-get install libxcb1-dev -y
 sudo apt-get install ca-certificates -y
 sudo apt-get install libcups2-dev -y
 sudo apt-get install libmysqlclient-dev -y
-sudo apt-get install libmariadbclient-dev -y
-
 sudo apt-get install libssl-dev -y
 
+#Se volvieron a instalar cuando ya había pasado
+sudo apt-get install libldap2-dev -y
+sudo apt-get install libmariadbclient-dev -y
+
 sudo apt-get install npm -y
+# fin de repetición
 
 sudo npm install -g rtlcss
 
@@ -97,13 +99,13 @@ cd /opt/odoo/
 
 #Descargarlo manualmente
 wget http://security.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1.1_amd64.deb 
-sudo apt install ./libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
+sudo apt-get install ./libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
 #sudo rm ./libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
 
 #Agregar repositorio
 sudo add-apt-repository ppa:linuxuprising/libpng12
-sudo apt update
-sudo apt install libpng12-0
+sudo apt-get update
+sudo apt-get install libpng12-0
 
 #----------------------------------------------------------------------------------
 # ========== postgresql ==========
@@ -157,7 +159,10 @@ pip3 install --user phonenumbers
 #----------------------------------------------------------------------------------
 # sudo su - odoo -s /bin/bash
 cd /opt/odoo/
+
+#Para inicializar, por mas que la hayamos creado antes.
 #python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER -i base
+#Cuando ya está inicializada
 #python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER
 
 #----------------------------------------------------------------------------------
