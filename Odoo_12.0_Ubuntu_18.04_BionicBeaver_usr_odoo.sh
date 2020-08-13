@@ -20,19 +20,6 @@ sudo apt-get upgrade -y
 sudo apt-get autoremove -y
 
 #----------------------------------------------------------------------------------
-# ========== Creación de Directorio ==========
-# Crear directorios de Instalación
-if [ -d /opt/odoo/ ] ;
-then
-	echo "Directorio /opt/odoo/ existente"
-else
-	sudo mkdir /opt/odoo
-	echo "Directorio /opt/odoo creado"
-fi
-cd /opt/odoo/
-sudo chown $USER:$USER -R /opt/odoo/
-
-#----------------------------------------------------------------------------------
 # ========== Python 3 ==========
 # python3 --version
 # pip3 --version
@@ -44,11 +31,10 @@ sudo apt-get install python3-wheel -y
 sudo apt-get install python3-setuptools -y
 sudo apt-get install python3-tk -y
 
+sudo apt-get install python3 python3-pip python3-dev python3-venv python3-wheel python3-setuptools python3-tk -y
+
 #sudo pip install virtualenvwrapper
 #source /usr/local/bin/virtualenvwrapper.sh
-
-#sudo apt-get install python-dev -y
-#sudo apt-get install python-pip -y
 
 #----------------------------------------------------------------------------------
 # ========== dependencias de development previas ==========
@@ -57,7 +43,7 @@ sudo apt-get install software-properties-common -y
 sudo apt-get install libxslt-dev -y
 sudo apt-get install libxslt1-dev -y
 sudo apt-get install build-essential -y
-sudo apt-get install libzip-dev -y 
+sudo apt-get install libzip-dev -y
 sudo apt-get install libsasl2-dev -y
 sudo apt-get install node-less -y
 sudo apt-get install gdebi -y
@@ -85,18 +71,17 @@ sudo apt-get install libcups2-dev -y
 sudo apt-get install libmysqlclient-dev -y
 sudo apt-get install libssl-dev -y
 
+sudo apt-get install git software-properties-common libxslt-dev libxslt1-dev build-essential libzip-dev libsasl2-dev node-less gdebi wget zlib1g-dev libxml2-dev libffi-dev libblas-dev libatlas-base-dev libpq-dev libjpeg-dev libtiff5-dev libjpeg8-dev libopenjp2-7-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev libharfbuzz-dev libfribidi-dev libxcb1-dev ca-certificates libcups2-dev libmysqlclient-dev libssl-dev -y
+
 #Se volvieron a instalar cuando ya había pasado
 sudo apt-get install libldap2-dev -y
 sudo apt-get install libmariadbclient-dev -y
 
 sudo apt-get install npm -y
-# fin de repetición
-
 sudo npm install -g rtlcss
 
 #----------------------------------------------------------------------------------
-cd /opt/odoo/
-
+cd
 #Descargarlo manualmente
 wget http://security.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1.1_amd64.deb 
 sudo apt-get install ./libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
@@ -113,7 +98,7 @@ sudo apt-get install libpng12-0
 
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 
-cd /opt/odoo/
+cd
 wget -O psqlkey https://www.postgresql.org/media/keys/ACCC4CF8.asc
 sudo apt-key add psqlkey
 #sudo rm psqlkey
@@ -123,14 +108,13 @@ sudo apt-get install postgresql-12 -y
 sudo apt-get install pgadmin4 -y
 
 #Creamos un usuario y la base de datos de Postgresql con el usuario actual
-sudo -u postgres createuser -s $USER
-createdb $USER
+sudo su postgres -c "createuser -s odoo"
 
 #----------------------------------------------------------------------------------
 # Install Wkhtmltopdf if needed
 # https://github.com/wkhtmltopdf/wkhtmltopdf/releases
 
-cd /opt/odoo/
+cd
 
 #Ubuntu 18.04 Bionic Beaver
 wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
@@ -142,34 +126,72 @@ sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin
 sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bin
 
 #----------------------------------------------------------------------------------
+# ========== Creamos usuario, grupo y home para odoo ==========
+
+#Creamos un nuevo usuario Odoo
+# Probar newusers pw_name:pw_passwd:pw_uid:pw_gid:pw_gecos:pw_dir:pw_shell
+# Probar 
+# sudo newusers odoo:odoo::odoo::/opt/odoo: --system
+sudo adduser --system --home=/opt/odoo --group odoo
+sudo usermod -aG sudo odoo
+
+#Cambiamos la contraseña del usuario Odoo
+#Probar chpasswd user_name:password
+#sudo chpasswd odoo:odoo No funcionó quedó esperando
+sudo passwd odoo
+
+#Damos permisos de su home al usuario Odoo
+sudo chown odoo: -R /opt/odoo/
+
+#----------------------------------------------------------------------------------
 # ========== Odoo ==========
 # git clone https://github.com/odoo/odoo.git
 
-cd /opt/odoo/
+# Nos pasamos al usuario Odoo
+sudo su - odoo -s /bin/bash
+cd
 git clone --depth 1 --branch 12.0 --single-branch https://github.com/odoo/odoo.git odoo-server/
 
 #----------------------------------------------------------------------------------
 #Instalamos las dependendencias y requerimientos de Odoo.
-cd /opt/odoo/
+
+# Nos pasamos al usuario Odoo
+sudo su - odoo -s /bin/bash
+cd
 pip3 install --user -r odoo-server/requirements.txt
 pip3 install --user -r odoo-server/doc/requirements.txt
 
 pip3 install --user phonenumbers
 
 #----------------------------------------------------------------------------------
-# sudo su - odoo -s /bin/bash
-cd /opt/odoo/
+# Nos pasamos al usuario Odoo
+sudo su - odoo -s /bin/bash
+cd
 
 #Para inicializar, por mas que la hayamos creado antes.
-#python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER -i base
+python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER -i base
 #Cuando ya está inicializada
 #python3 odoo-server/odoo-bin --addons-path=odoo-server/addons -d $USER
 
 #----------------------------------------------------------------------------------
-sudo mkdir /var/log/odoo
-sudo chown -R $USER:$USER /var/log/odoo
+# Nos pasamos al usuario Odoo
+sudo su - odoo -s /bin/bash
+cd
+
+# Creamos carpeta para Log
+if [ -d /var/log/odoo/ ];
+then
+	echo "El directorio /var/log/odoo/ ya existe."
+else
+	sudo mkdir /var/log/odoo
+	echo "Directorio /var/log/odoo/ creado."
+fi
+
+sudo chown -R odoo:root /var/log/odoo
 
 #----------------------------------------------------------------------------------
+# Nos pasamos al usuario Odoo
+sudo su - odoo -s /bin/bash
 # Creamos el archivo de configuracion de odoo
 cat <<EOF > ~/odoo-server.conf
 [options]
@@ -195,6 +217,9 @@ sudo chown $USER: /etc/odoo-server.conf
 sudo chmod 640 /etc/odoo-server.conf
 
 #----------------------------------------------------------------------------------
+# Nos pasamos al usuario Odoo
+sudo su - odoo -s /bin/bash
+cd
 # SERVICIO ODOO ver 2.0
 cat <<EOF > ~/odoo-server.service
 [Unit]
@@ -215,7 +240,7 @@ EOF
 
 sudo cp ~/odoo-server.service /lib/systemd/system/
 sudo chmod 755 /lib/systemd/system/odoo-server.service
-sudo chown $USER: /lib/systemd/system/odoo-server.service
+sudo chown root: /lib/systemd/system/odoo-server.service
 
 # Inicializamos
 #sudo systemctl start odoo-server.service
