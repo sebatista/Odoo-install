@@ -74,6 +74,7 @@ sudo apt-get install libmysqlclient-dev -y
 sudo apt-get install libssl-dev -y
 
 sudo apt-get install git software-properties-common libxslt-dev libxslt1-dev build-essential libzip-dev libsasl2-dev node-less gdebi wget zlib1g-dev libxml2-dev libffi-dev libblas-dev libatlas-base-dev libpq-dev libjpeg-dev libtiff5-dev libjpeg8-dev libopenjp2-7-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev libharfbuzz-dev libfribidi-dev libxcb1-dev ca-certificates libcups2-dev libmysqlclient-dev libssl-dev -y
+
 #Se volvieron a instalar cuando ya había pasado
 sudo apt-get install libldap2-dev -y
 sudo apt-get install libmariadbclient-dev -y
@@ -82,7 +83,7 @@ sudo apt-get install npm -y
 sudo npm install -g rtlcss
 
 #----------------------------------------------------------------------------------
-cd /opt/odoo/
+cd
 
 #Descargarlo manualmente
 wget http://security.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1.1_amd64.deb 
@@ -90,9 +91,9 @@ sudo apt-get install ./libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
 #sudo rm ./libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
 
 #Agregar repositorio
-sudo add-apt-repository ppa:linuxuprising/libpng12
-sudo apt-get update
-sudo apt-get install libpng12-0
+#sudo add-apt-repository ppa:linuxuprising/libpng12
+#sudo apt-get update
+#sudo apt-get install libpng12-0
 
 #----------------------------------------------------------------------------------
 # ========== postgresql ==========
@@ -100,7 +101,7 @@ sudo apt-get install libpng12-0
 
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 
-cd /opt/odoo/
+cd
 wget -O psqlkey https://www.postgresql.org/media/keys/ACCC4CF8.asc
 sudo apt-key add psqlkey
 #sudo rm psqlkey
@@ -134,7 +135,7 @@ ALTER USER postgres PASSWORD 'password';
 # Install Wkhtmltopdf if needed
 # https://github.com/wkhtmltopdf/wkhtmltopdf/releases
 
-cd /opt/odoo/
+cd
 
 #Ubuntu 18.04 Bionic Beaver
 wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
@@ -161,21 +162,16 @@ sudo chown odoo: -R /opt/odoo/
 # git clone https://github.com/odoo/odoo.git
 
 sudo su - odoo -s /bin/bash
-cd 							 
 git clone --depth 1 --branch 12.0 --single-branch https://github.com/odoo/odoo.git odoo-server/
 
 #----------------------------------------------------------------------------------
 #Instalamos las dependendencias y requerimientos de Odoo.
 
 sudo su - odoo -s /bin/bash
-cd
 pip3 install --user -r odoo-server/requirements.txt
 pip3 install --user -r odoo-server/doc/requirements.txt
 
 pip3 install --user phonenumbers
-
-#Damos permisos de su home al usuario Odoo
-sudo chown odoo: -R /opt/odoo/
 
 #----------------------------------------------------------------------------------
 
@@ -199,6 +195,7 @@ db_host = False
 db_port = False
 db_name = odoo
 db_user = odoo
+db_password = False
 logfile = /var/log/odoo/odoo-server.log
 addons_path = /opt/odoo/odoo-server/addons,
 
@@ -299,6 +296,9 @@ sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadh
 
 sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
+
+sudo su - odoo -s /bin/bash
+cd /opt/odoo/addons/ADHOC
 
 python3 -m pip install --user -r account-analytic/requirements.txt
 python3 -m pip install --user -r account-financial-tools/requirements.txt
@@ -411,7 +411,9 @@ sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/OCA
 sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
+sudo su - odoo -s /bin/bash
 cd /opt/odoo/addons/OCA
+
 python3 -m pip install --user -r account-analytic/requirements.txt
 python3 -m pip install --user -r account-closing/requirements.txt
 python3 -m pip install --user -r account-financial-reporting/requirements.txt
@@ -495,7 +497,6 @@ fi
 
 cd /opt/odoo/addons/others
 
-
 # 2020-01-01 - Jobiols -> solo utilizarémos ARBA y SICORE.
 # 2020-01-01 - Regaby -> solo utilizaremos ???
 sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/it-projects-llc/access-addons it-projects-llc-access-addons
@@ -511,6 +512,9 @@ sudo -H git clone --depth 1 --branch 12.0 --single-branch https://github.com/job
 
 sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
+
+sudo su - odoo -s /bin/bash
+cd /opt/odoo/addons/others
 
 python3 -m pip install --user -r it-projects-llc-access-addons/requirements.txt
 python3 -m pip install --user -r it-projects-llc-mail-addons/requirements.txt
