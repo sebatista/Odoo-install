@@ -132,7 +132,7 @@ ALTER USER postgres PASSWORD 'password';
 #ALTER USER odoo PASSWORD 'odoo';
 
 #----------------------------------------------------------------------------------
-# Install Wkhtmltopdf if needed
+# ========== Wkhtmltopdf ==========
 # https://github.com/wkhtmltopdf/wkhtmltopdf/releases
 
 cd
@@ -145,6 +145,45 @@ sudo gdebi --n `basename https://github.com/wkhtmltopdf/wkhtmltopdf/releases/dow
 # Continuar
 sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin
 sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bin
+
+#----------------------------------------------------------------------------------
+# ========== Libre Office ==========
+# Libreoffice - servicio en puerto 8100 del localhost
+#sudo apt-get install libreoffice -y
+#sudo apt-get install libreoffice-script-provider-python -y
+sudo apt-get install libreoffice libreoffice-script-provider-python -y
+
+#Creamos el archivo de servicio
+cat <<EOF > ~/office
+### BEGIN INIT INFO
+# Provides:          office
+# Required-Start:    \$remote_fs \$syslog
+# Required-Stop:     \$remote_fs \$syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+#!/bin/sh
+/usr/bin/soffice --nologo --nofirststartwizard --headless --norestore --invisible "--accept=socket,host=localhost,port=8100,tcpNoDelay=1;urp;" &
+EOF
+
+#Cargamos el script de inicio para automatizarlo
+sudo cp ~/office /etc/init.d/office
+sudo chown root:root /etc/init.d/office
+sudo chmod +x /etc/init.d/office
+sudo update-rc.d office defaults
+sudo /etc/init.d/office
+
+# Verificacion del funcionamento:
+telnet localhost 8100
+# Salida:
+# Trying ::1...
+# Trying 127.0.0.1...
+# Connected to localhost.
+# Escape character is '^]'. control+]
+# e��'com.sun.star.bridge.XProtocolPropertiesUrpProtocolProperties.UrpProtocolPropertiesTid���$
+
 
 #----------------------------------------------------------------------------------
 # ========== Creamos usuario, grupo y home para odoo ==========
@@ -168,10 +207,21 @@ git clone --depth 1 --branch 12.0 --single-branch https://github.com/odoo/odoo.g
 #Instalamos las dependendencias y requerimientos de Odoo.
 
 sudo su - odoo -s /bin/bash
-pip3 install --user -r odoo-server/requirements.txt
-pip3 install --user -r odoo-server/doc/requirements.txt
 
-pip3 install --user phonenumbers
+python3 -m pip install --user -r odoo-server/requirements.txt
+python3 -m pip install --user -r odoo-server/doc/requirements.txt
+#pip3 install --user -r odoo-server/requirements.txt
+#pip3 install --user -r odoo-server/doc/requirements.txt
+
+python3 -m pip install --user phonenumbers
+python3 -m pip install --user keyring==12.0.0
+python3 -m pip install --user keyrings.alt --upgrade
+python3 -m pip install --user gdata==2.0.18
+#Para Aeroo Reports
+python3 -m pip install --user uno
+python3 -m pip install --user jsonrpc2
+python3 -m pip install --user daemonize
+
 
 #----------------------------------------------------------------------------------
 
@@ -187,16 +237,25 @@ sudo mkdir /var/log/odoo
 sudo chown -R odoo:root /var/log/odoo
 
 #----------------------------------------------------------------------------------
-# Creamos el archivo de configuracion de odoo
+#  ========== Creamos el archivo de configuracion de odoo ==========
 cat <<EOF > ~/odoo-server.conf
 [options]
 ; admin_passwd = admin
 db_host = False
 db_port = False
-db_name = odoo
+
+;Si deseamos que no pueda ver otra base de datos mas que odoo
+;db_name = odoo
+
+;Indicamos el usuario de la base de datos. Creado en PostgreSQL
 db_user = odoo
+;Indicamos que el usuario odoo no tiene clave, de lo contrario la cargamos aquí
 db_password = False
+
+;Indicamos donde almacenaremos el archivo de log.
 logfile = /var/log/odoo/odoo-server.log
+
+;Indicamos las carpetas de módulos addons
 addons_path = /opt/odoo/odoo-server/addons,
 
 ;/opt/odoo/addons,
@@ -214,7 +273,7 @@ sudo chown odoo: /etc/odoo-server.conf
 sudo chmod 640 /etc/odoo-server.conf
 
 #----------------------------------------------------------------------------------
-# SERVICIO ODOO ver 2.0
+#  ========== SERVICIO ODOO ver 2.0 ==========
 cat <<EOF > ~/odoo-server.service
 [Unit]
 Description=Odoo Open Source ERP and CRM
@@ -246,7 +305,7 @@ sudo systemctl stop odoo-server.service
 sudo systemctl enable odoo-server.service
 
 #----------------------------------------------------------------------------------
-# Localizacion argentina ADHOC
+#  ========== Localizacion argentina ADHOC  ==========
 
 # Crear directorios para Addons
 if [ -d /opt/odoo/addons/ ] ;
@@ -325,8 +384,9 @@ python3 -m pip install --user -r stock/requirements.txt
 python3 -m pip install --user -r survey/requirements.txt
 python3 -m pip install --user -r website/requirements.txt
 
+exit
 #----------------------------------------------------------------------------------
-# Localizacion argentina OCA
+#  ========== Localizacion argentina OCA ==========
 
 # Crear directorios para Addons
 if [ -d /opt/odoo/addons/ ] ;
@@ -474,8 +534,10 @@ python3 -m pip install --user -r vertical-hotel/requirements.txt
 python3 -m pip install --user -r web/requirements.txt
 python3 -m pip install --user -r website/requirements.txt
 
+exit
+
 #----------------------------------------------------------------------------------
-# Localizacion argentina Otros/Varios
+#  ========== Localizacion argentina Otros/Varios ==========
 
 # Crear directorios para Addons
 if [ -d /opt/odoo/addons/ ] ;
@@ -524,3 +586,64 @@ python3 -m pip install --user -r regaby-odoo-addons/requirements.txt
 python3 -m pip install --user -r jobiols-odoo-addons/requirements.txt
 python3 -m pip install --user -r jobiols-odoo-addons/l10n_ar_export_arba/requirements.txt
 python3 -m pip install --user -r jobiols-odoo-addons/l10n_ar_export_sicore/requirements.txt
+
+#----------------------------------------------------------------------------------
+#  ========== AEROO Docs ==========
+
+#Lo ejecutamos como el usuario común, no Odoo
+python3 -m pip install --user uno
+python3 -m pip install --user jsonrpc2
+python3 -m pip install --user daemonize
+python3 -m pip install --user base
+python3 -m pip install --user element
+python3 -m pip install --user css
+
+# NO SEGUI porque no estoy seguro.
+python3 -m pip install --user payload
+python3 -m pip install --user unobasefeature
+python3 -m pip install --user unobasefield
+
+#Creación de carpeta de Instalación
+if [ -d /opt/aero/ ];
+then
+	echo "Directorio /opt/aero/ existente"
+else
+	sudo mkdir /opt/aeroo
+	echo "Directorio /opt/aero/ creado"
+fi
+
+cd /opt/aeroo
+
+# Creación de carpeta de Logs
+if [ -d /var/log/aeroo-docs/ ];
+then
+	echo "Directorio /var/log/aeroo-docs/ existente"
+else
+	sudo mkdir /var/log/aeroo-docs
+	echo "Directorio /var/log/aeroo-docs/ creado"
+fi
+
+
+cat <<EOF > ~/aeroo-docs.conf
+[start]
+interface = localhost
+port = 8989
+oo-server = localhost
+oo-port = 8100
+spool-directory = /tmp/aeroo-docs
+spool-expire = 1800
+log-file = /var/log/aeroo-docs/aeroo_docs.log
+pid-file = /tmp/aeroo-docs.pid
+[simple-auth]
+username = anonymous
+password = anonymous
+EOF
+
+sudo cp ~/aeroo-docs.conf /etc/aeroo-docs.conf
+sudo chown root:root /etc/aeroo-docs.conf
+sudo git clone https://github.com/aeroo/aeroo_docs.git
+yes | sudo python3 /opt/aeroo/aeroo_docs/aeroo-docs start -c /etc/aeroo-docs.conf
+sudo ln -s /opt/aeroo/aeroo_docs/aeroo-docs /etc/init.d/aeroo-docs
+sudo update-rc.d aeroo-docs defaults
+sudo service aeroo-docs start
+sudo service aeroo-docs restart
