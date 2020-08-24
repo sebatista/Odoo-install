@@ -647,3 +647,72 @@ sudo ln -s /opt/aeroo/aeroo_docs/aeroo-docs /etc/init.d/aeroo-docs
 sudo update-rc.d aeroo-docs defaults
 sudo service aeroo-docs start
 sudo service aeroo-docs restart
+
+#----------------------------------------------------------------------------------
+# ========== Nginx ==========
+# https://github.com/sebatista/odoo-nginx-le/blob/master/odoo-nginx-le.sh
+# https://linuxize.com/post/configure-odoo-with-nginx-as-a-reverse-proxy/
+sudo apt update -y
+
+# Instalamos el Nginx
+sudo apt install nginx -y
+
+#Comprobar estado
+sudo systemctl status nginx
+
+#Comprobar versión
+sudo nginx -v
+
+# Habilitamos el servicio nginx
+sudo systemctl enable nginx
+
+# Configuration files
+sudo vi /etc/nginx/nginx.conf
+
+
+
+# FAlta configurar el site
+
+
+
+# Instalar ufw
+sudo apt install ufw -y
+
+# Comprobamos el estado
+sudo ufw status verbose
+
+# Para saber mas información sobre una aplicación configuradas
+sudo ufw app info 'Nginx Full'
+
+# Habilitamos el puerto de SSH por si no está
+sudo ufw allow ssh
+
+# Luego de configurar UFW es necesario activarlo
+sudo ufw enable
+
+# Si se utiliza UFW Configuramos el firewall
+sudo ufw allow 'Nginx Full'
+
+#Comprobamos el estado
+sudo ufw status
+
+#Comprobamos la instalación desde un navegador
+#http://YOUR_IP
+
+# Instalamos el Let's Encrypt
+
+# Prerequisitos. Ya debería estar pero lo dejamos por aquí
+#sudo apt install software-properties-common -y
+
+# Agregamos repositorio necesario
+sudo add-apt-repository ppa:certbot/certbot -y
+
+# Actualizamos e instalamos
+sudo apt update -y
+sudo apt install certbot -y
+
+# Generar Deffie-Hellman key exchange.
+sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+
+# Obtaining a Let’s Encrypt SSL certificate
+
