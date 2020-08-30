@@ -216,12 +216,16 @@ python3 -m pip install --user -r odoo-server/doc/requirements.txt
 python3 -m pip install --user phonenumbers
 python3 -m pip install --user keyring==12.0.0
 python3 -m pip install --user keyrings.alt --upgrade
-python3 -m pip install --user gdata==2.0.18
+
+# INSTALARLO DE OTRO MODO
+#python3 -m pip install --user gdata==2.0.18
+
 #Para Aeroo Reports
 python3 -m pip install --user uno
 python3 -m pip install --user jsonrpc2
 python3 -m pip install --user daemonize
 
+exit
 
 #----------------------------------------------------------------------------------
 
@@ -295,14 +299,12 @@ sudo cp ~/odoo-server.service /lib/systemd/system/
 sudo chmod 755 /lib/systemd/system/odoo-server.service
 sudo chown root: /lib/systemd/system/odoo-server.service
 
-# Inicializamos
-sudo systemctl start odoo-server.service
-
-# Detenemos
-sudo systemctl stop odoo-server.service
-
 # Inicializar Automáticamente
 sudo systemctl enable odoo-server.service
+
+# Inicializamos o Detenemos
+#sudo systemctl start odoo-server.service
+#sudo systemctl stop odoo-server.service
 
 #----------------------------------------------------------------------------------
 #  ========== Localizacion argentina ADHOC  ==========
@@ -587,6 +589,8 @@ python3 -m pip install --user -r jobiols-odoo-addons/requirements.txt
 python3 -m pip install --user -r jobiols-odoo-addons/l10n_ar_export_arba/requirements.txt
 python3 -m pip install --user -r jobiols-odoo-addons/l10n_ar_export_sicore/requirements.txt
 
+exit
+
 #----------------------------------------------------------------------------------
 #  ========== AEROO Docs ==========
 
@@ -665,6 +669,15 @@ sudo nginx -v
 
 # Habilitamos el servicio nginx
 sudo systemctl enable nginx
+
+#Creamos un archivo para nuestro sitio.
+sudo nano /etc/nginx/sites-available/odoo
+
+
+#Creamos un link simbólico
+sudo ln -s /etc/nginx/sites-available/odoo odoo
+
+
 
 # Configuration files
 sudo vi /etc/nginx/nginx.conf
