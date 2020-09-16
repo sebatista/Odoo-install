@@ -69,7 +69,7 @@ sudo chmod -R 775 /opt/odoo/addons
 
 sudo -H pip3 install pycryptodome
 # original # 
-# sudo -H pip3 install -r account-financial-tools-11.0/requirements.txt
+sudo -H pip3 install -r account-financial-tools-11.0/requirements.txt
 sudo -H pip3 install -r account-payment-11.0/requirements.txt
 sudo -H pip3 install -r aeroo_reports-11.0/requirements.txt
 sudo -H pip3 install -r argentina-reporting-11.0/requirements.txt
@@ -77,9 +77,9 @@ sudo -H pip3 install -r argentina-sale-11.0/requirements.txt
 sudo -H pip3 install -r miscellaneous-11.0/requirements.txt
 sudo -H pip3 install -r multi-store-11.0/requirements.txt
 sudo -H pip3 install -r odoo-argentina-11.0/requirements.txt
-# sudo -H pip3 install -r partner_identification/requirements.txt
+sudo -H pip3 install -r partner_identification/requirements.txt
 sudo -H pip3 install -r reporting-engine-11.0/requirements.txt	#GENERÓ ERRORES - REVISAR
 sudo -H pip3 install -r stock-11.0/requirements.txt
-#sudo -H pip3 install -r sale-11.0/requirements.txt
-#sudo -H pip3 install -r account-invoicing-11.0/requirements.txt
+sudo -H pip3 install -r sale-11.0/requirements.txt
+sudo -H pip3 install -r account-invoicing-11.0/requirements.txt
 

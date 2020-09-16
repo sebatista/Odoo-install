@@ -115,10 +115,10 @@ sudo -H pip3 install -r OCA-reporting-engine/requirements.txt
 sudo -H pip3 install -r OCA-report-print-send/requirements.txt
 
 sudo -H pip3 install -r OCA-social/requirements.txt
-#sudo -H pip3 install -r OCA-contract/requirements.txt
+sudo -H pip3 install -r OCA-contract/requirements.txt
 sudo -H pip3 install -r OCA-web/requirements.txt
-#sudo -H pip3 install -r OCA-website/requirements.txt
-#sudo -H pip3 install -r OCA-product-variant/requirements.txt
-#sudo -H pip3 install -r OCA-product-attribute/requirements.txt
+sudo -H pip3 install -r OCA-website/requirements.txt
+sudo -H pip3 install -r OCA-product-variant/requirements.txt
+sudo -H pip3 install -r OCA-product-attribute/requirements.txt
 sudo -H pip3 install -r OCA-partner-contact/requirements.txt
-#sudo -H pip3 install -r OCA-e-commerce/requirements.txt
+sudo -H pip3 install -r OCA-e-commerce/requirements.txt
