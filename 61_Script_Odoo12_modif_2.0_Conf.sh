@@ -26,6 +26,8 @@ addons_path = /opt/odoo/addons,/opt/odoo/odoo-server/addons,
 
 ;/opt/odoo/addons/others/it-projects-llc-access-addons,/opt/odoo/addons/others/it-projects-llc-mail-addons,/opt/odoo/addons/others/it-projects-llc-sync-addons,/opt/odoo/addons/others/it-projects-llc-website-addons,/opt/odoo/addons/others/jobiols-odoo-addons,/opt/odoo/addons/others/regaby-odoo-addons,
 
+;/opt/odoo/addons/educat/openeducat,
+
 EOF
 
 #GENERA ERROR: /opt/odoo/addons/OCA/report-print-send,
