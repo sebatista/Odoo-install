@@ -30,11 +30,10 @@ sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadh
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/argentina-reporting argentina-reporting
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/argentina-sale argentina-sale
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/hr hr
+sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/manufacture manufacture
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/miscellaneous miscellaneous
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/multi-company multi-company
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/multi-store multi-store
-sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/manufacture manufacture
-sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/multi-company multi-company
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/odoo-argentina odoo-argentina
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/odoo-support odoo-support
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/partner partner
@@ -48,8 +47,9 @@ sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadh
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/survey survey
 sudo git clone --depth 1 --branch 12.0 --single-branch https://github.com/ingadhoc/website website
 
-sudo chown -R odoo:odoo -R /opt/odoo/addons
-sudo chmod -R 775 /opt/odoo/addons
+
+sudo chown -R odoo:odoo -R /opt/odoo/addons/ADHOC
+sudo chmod -R 775 /opt/odoo/addons/ADHOC
 
 pip3 install -r account-analytic/requirements.txt
 pip3 install -r account-financial-tools/requirements.txt
@@ -70,9 +70,114 @@ pip3 install -r patches/requirements.txt
 pip3 install -r product/requirements.txt
 pip3 install -r project/requirements.txt
 pip3 install -r purchase/requirements.txt
-pip3 install -r reporting-engine/requirements.txt	#GENERÓ ERRORES - pycups
+
+pip3 install -r reporting-engine/requirements.txt		#GENERÓ ERRORES - pycups
+
 pip3 install -r sale/requirements.txt
 pip3 install -r stock/requirements.txt
 pip3 install -r survey/requirements.txt
 pip3 install -r website/requirements.txt
 
+
+
+
+cd /opt/odoo/addons/ADHOC/account-analytic/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/account-financial-tools/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/account-invoicing/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/account-payment/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/aeroo_reports/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/argentina-reporting/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/argentina-sale/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/hr/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/manufacture/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/miscellaneous/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/multi-company/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/multi-store/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/odoo-argentina/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/odoo-support/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/partner/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/patches/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/product/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/project/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/purchase/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/reporting-engine/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/sale/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/stock/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/survey/
+sudo git reset --hard HEAD
+sudo git pull
+
+cd /opt/odoo/addons/ADHOC/website/
+sudo git reset --hard HEAD
+sudo git pull
+
+
+
+sudo chown -R odoo:odoo -R /opt/odoo/addons/ADHOC
+sudo chmod -R 775 /opt/odoo/addons/ADHOC

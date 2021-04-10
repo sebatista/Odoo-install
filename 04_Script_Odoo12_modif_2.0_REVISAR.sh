@@ -8,6 +8,18 @@ exit
 pip3 install -r /opt/odoo/odoo/requirements.txt
 pip3 install -r /opt/odoo/odoo/doc/requirements.txt
 
+#Actualización de Repositorio de Odoo.
+sudo su - odoo -s /bin/bash
+cd /opt/odoo/odoo-server/
+sudo git pull
+exit
+
+#ACTUALIZACIÓN DE BASE DE DATOS Y MÓDULOS
+# sudo su - odoo -s /bin/bash
+# cd /opt/odoo/odoo-server/
+# ./odoo-bin -c /etc/odoo-server.conf --update all
+
+
 #Lo anterior se intenta reemplazar por:
 #sudo su - odoo -s /bin/bash -c "git clone --depth 1 --branch 12.0 --single-branch https://github.com/odoo/odoo odoo-server/"
 #sudo su - odoo -s /bin/bash -c "pip3 install -r odoo-server/requirements.txt"

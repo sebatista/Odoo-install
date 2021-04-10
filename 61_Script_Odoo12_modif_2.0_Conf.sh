@@ -30,8 +30,6 @@ addons_path = /opt/odoo/addons,/opt/odoo/odoo-server/addons,
 
 EOF
 
-#GENERA ERROR: /opt/odoo/addons/OCA/report-print-send,
-
 #Ésta ruta genera un error que no carga ninguno
 #/opt/odoo/addons/OCA/report-print-send,
 
