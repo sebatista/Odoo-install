@@ -179,7 +179,7 @@ sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/OCA
 sudo chown -R odoo:odoo -R /opt/odoo/addons/OCA
 sudo chmod -R 775 /opt/odoo/addons/OCA
 
-sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/OCA/account-analytic/requirements.txt
+
 pip3 install -r account-closing/requirements.txt
 pip3 install -r account-financial-reporting/requirements.txt
 pip3 install -r account-financial-tools/requirements.txt
@@ -239,6 +239,7 @@ pip3 install -r vertical-hotel/requirements.txt
 pip3 install -r web/requirements.txt
 pip3 install -r website/requirements.txt
 
+sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/OCA/account-analytic/requirements.txt
 
 
 
@@ -291,6 +292,8 @@ sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/job
 
 sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
+
+
 
 sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/others/it-projects-llc-access-addons/requirements.txt
 
