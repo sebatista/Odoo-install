@@ -82,7 +82,7 @@ pip3 install -r stock/requirements.txt
 #pip3 install -r survey/requirements.txt
 pip3 install -r website/requirements.txt
 
-sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/ADHOC/aeroo_reports/requirements.txt
+#sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/ADHOC/aeroo_reports/requirements.txt
 
 
 
@@ -239,7 +239,7 @@ pip3 install -r vertical-hotel/requirements.txt
 pip3 install -r web/requirements.txt
 pip3 install -r website/requirements.txt
 
-sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/OCA/account-analytic/requirements.txt
+#sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/OCA/account-analytic/requirements.txt
 
 
 
@@ -310,11 +310,17 @@ pip3 install -r jobiols-odoo-addons/l10n_ar_export_arba/requirements.txt
 
 
 
-Ejecutar Comandos dentro del contenedor
-=======================================
-docker exec -u [usuario] [contenedor] [comando]
-docker exec -u root odoo9_odoo_1 pip install xlsxwriter
-sudo docker exec -u root odoo9_odoo_1 pip install xlsxwriter
+
+
+
+
+
+
+#Ejecutar Comandos dentro del contenedor
+#=======================================
+#docker exec -u [usuario] [contenedor] [comando]
+#docker exec -u root odoo9_odoo_1 pip install xlsxwriter
+#sudo docker exec -u root odoo9_odoo_1 pip install xlsxwriter
 
 
 
