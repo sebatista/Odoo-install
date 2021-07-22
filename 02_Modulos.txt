@@ -1,10 +1,13 @@
 # Herramientas necesarias para instalar cosas dentro del Repo
-sudo docker exec -u root sise_web_1 apt-get git -y
+#sudo docker exec -u root sise_web_1 apt-get git -y
 
 
+#ACTUALIZACIÓN DE BASE DE DATOS Y MÓDULOS
+sudo su - odoo -s /bin/bash
+./odoo/odoo-bin -c /etc/odoo.conf --update all
 
 
-
+#==================================================================================
 #
 # Localizacion argentina ADHOC
 #
@@ -84,12 +87,94 @@ pip3 install -r website/requirements.txt
 
 #sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/ADHOC/aeroo_reports/requirements.txt
 
+cd /opt/odoo/addons/ADHOC/account-financial-tools/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/account-invoicing/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/account-payment/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/aeroo_reports/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/argentina-reporting/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/argentina-sale/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/manufacture/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/miscellaneous/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/multi-store/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/odoo-argentina/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+#cd /opt/odoo/addons/ADHOC/partner_identification/
+#sudo git reset --hard HEAD
+#sudo git pull
+#sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/product/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/purchase/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/reporting-engine/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/sale/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/stock/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/ADHOC/website/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
 
 
 
-
-
-
+#==================================================================================
 #
 # Localizacion argentina OCA
 #
@@ -242,14 +327,176 @@ pip3 install -r website/requirements.txt
 #sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/OCA/account-analytic/requirements.txt
 
 
+#Actualización de las rutas utilizadas
+
+cd /opt/odoo/addons/OCA/account-analytic/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/account-financial-reporting/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/account-financial-tools/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/account-invoicing/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/account-payment/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/commission/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/contract/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/credit-control/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/crm/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/e-commerce/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/hr/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/hr-timesheet/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/knowledge/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/manufacture/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/margin-analysis/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/operating-unit/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/partner-contact/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/product-attribute/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/product-variant/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/purchase-workflow/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/queue/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/reporting-engine/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/report-print-send/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/sale-financial/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/sale-reporting/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/sale-workflow/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/server-tools/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/server-ux/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/social/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/stock-logistics-warehouse/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/stock-logistics-workflow/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/web/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/OCA/website/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
 
 
 
-
-
-
-
-
+#==================================================================================
 #
 # Localizacion argentina Otros/Varios
 #
@@ -293,9 +540,44 @@ sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/job
 sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
+cd /opt/odoo/addons/others/jobiols-ea-remito/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/others/jobiols-odoo-addons/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/others/jobiols-odoo-jeo-ce/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/others/others-akretion-odoo-usability/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/others/others-it-projects-llc-website-addons/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/others/regaby-ea-sale-report/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
+
+cd /opt/odoo/addons/others/regaby-odoo-addons/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
 
 
-sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/others/it-projects-llc-access-addons/requirements.txt
+
+#sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/others/it-projects-llc-access-addons/requirements.txt
 
 #pip3 install -r akretion-odoo-usability/requirements.txt
 pip3 install -r it-projects-llc-access-addons/requirements.txt
