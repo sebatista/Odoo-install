@@ -4,7 +4,20 @@
 
 #ACTUALIZACIÓN DE BASE DE DATOS Y MÓDULOS
 sudo su - odoo -s /bin/bash
-./odoo/odoo-bin -c /etc/odoo.conf --update all
+./odoo/odoo-bin -c /etc/odoo/odoo.conf --update all
+
+#==================================================================================
+#
+# Actualización de Core de Odoo
+#
+
+sudo su - odoo -s /bin/bash
+cd /opt/odoo/odoo/
+git reset --hard HEAD
+git pull
+pip3 install -r requirements.txt
+pip3 install -r doc/requirements.txt
+exit
 
 
 #==================================================================================
@@ -524,13 +537,19 @@ cd /opt/odoo/addons/others
 
 # 2020-01-01 - Jobiols -> solo utilizarémos ARBA y SICORE.
 # 2020-01-01 - Regaby -> solo utilizaremos ???
+
+
 #sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/akretion/odoo-usability akretion-odoo-usability	# no se mantiene mas.
+
 sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/it-projects-llc/access-addons it-projects-llc-access-addons
 sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/it-projects-llc/mail-addons it-projects-llc-mail-addons
 sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/it-projects-llc/sync-addons it-projects-llc-sync-addons
 sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/it-projects-llc/website-addons it-projects-llc-website-addons
+
 sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/regaby/odoo-addons regaby-odoo-addons
+
 sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/jobiols/odoo-addons jobiols-odoo-addons
+
 #sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/sebatista/jobiols-odoo-addons jobiols-odoo-addons
 
 #REVISAR 
@@ -540,35 +559,48 @@ sudo -H git clone --depth 1 --branch 13.0 --single-branch https://github.com/job
 sudo chown -R odoo:odoo -R /opt/odoo/addons
 sudo chmod -R 775 /opt/odoo/addons
 
-cd /opt/odoo/addons/others/jobiols-ea-remito/
+#sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/others/it-projects-llc-access-addons/requirements.txt
+
+#pip3 install -r akretion-odoo-usability/requirements.txt
+
+pip3 install -r it-projects-llc-access-addons/requirements.txt
+pip3 install -r it-projects-llc-mail-addons/requirements.txt
+pip3 install -r it-projects-llc-sync-addons/requirements.txt
+pip3 install -r it-projects-llc-website-addons/requirements.txt
+
+pip3 install -r regaby-odoo-addons/requirements.txt
+
+pip3 install -r jobiols-odoo-addons/requirements.txt
+
+
+
+
+#cd /opt/odoo/addons/others/others-akretion-odoo-usability/
+#sudo git reset --hard HEAD
+#sudo git pull
+#sudo -H pip3 install -r requirements.txt
+
+
+cd /opt/odoo/addons/others/it-projects-llc-access-addons/
 sudo git reset --hard HEAD
 sudo git pull
 sudo -H pip3 install -r requirements.txt
 
-cd /opt/odoo/addons/others/jobiols-odoo-addons/
+cd /opt/odoo/addons/others/it-projects-llc-mail-addons/
 sudo git reset --hard HEAD
 sudo git pull
 sudo -H pip3 install -r requirements.txt
 
-cd /opt/odoo/addons/others/jobiols-odoo-jeo-ce/
+cd /opt/odoo/addons/others/it-projects-llc-sync-addons/
 sudo git reset --hard HEAD
 sudo git pull
 sudo -H pip3 install -r requirements.txt
 
-cd /opt/odoo/addons/others/others-akretion-odoo-usability/
+cd /opt/odoo/addons/others/it-projects-llc-website-addons/
 sudo git reset --hard HEAD
 sudo git pull
 sudo -H pip3 install -r requirements.txt
 
-cd /opt/odoo/addons/others/others-it-projects-llc-website-addons/
-sudo git reset --hard HEAD
-sudo git pull
-sudo -H pip3 install -r requirements.txt
-
-cd /opt/odoo/addons/others/regaby-ea-sale-report/
-sudo git reset --hard HEAD
-sudo git pull
-sudo -H pip3 install -r requirements.txt
 
 cd /opt/odoo/addons/others/regaby-odoo-addons/
 sudo git reset --hard HEAD
@@ -576,19 +608,10 @@ sudo git pull
 sudo -H pip3 install -r requirements.txt
 
 
-
-#sudo docker exec -u root sise_web_1 pip3 install -r /mnt/extra-addons/others/it-projects-llc-access-addons/requirements.txt
-
-#pip3 install -r akretion-odoo-usability/requirements.txt
-pip3 install -r it-projects-llc-access-addons/requirements.txt
-pip3 install -r it-projects-llc-mail-addons/requirements.txt
-pip3 install -r it-projects-llc-sync-addons/requirements.txt
-pip3 install -r it-projects-llc-website-addons/requirements.txt
-pip3 install -r regaby-odoo-addons/requirements.txt
-pip3 install -r jobiols-odoo-addons/requirements.txt
-pip3 install -r jobiols-odoo-addons/l10n_ar_export_arba/requirements.txt
-#pip3 install -r jobiols-odoo-addons/l10n_ar_export_sicore/requirements.txt
-
+cd /opt/odoo/addons/others/jobiols-odoo-addons/
+sudo git reset --hard HEAD
+sudo git pull
+sudo -H pip3 install -r requirements.txt
 
 
 
