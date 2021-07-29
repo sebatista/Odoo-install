@@ -1,0 +1,29 @@
+https://jobiols.github.io/odoo-env/
+https://github.com/jobiols/odoo-env
+
+#Descargar el repositorio creado de cl-test o cl-template o cl-scafolding
+# puede ser en el home, ya que es para la carga inicial, luego no será necesario
+
+git clone --depth 1 --branch 13.0 --single-branch  https://github.com/sebatista/cl-wert.git
+
+#Dentro del repositorio realizamos los siguientes comandos.
+
+#Install. Creates dir structure, and pull all the
+#repositories declared in the client manifest. Use with
+#--debug to copy Odoo image sources to host
+oe --install -c [cliente como se haya declarado en cl-cliente]
+
+#Update modules to database. Use --debug to force update
+#with image sources. use -m modulename to update this
+#only module default is all use -d databasename to update
+#this database, default is clientname_default
+oe --write-config
+
+oe --pull-images
+
+oe --run-env
+
+oe --update -d odoo
+
+oe --run-cli --nginx
+oe --run-cli
